@@ -8,3 +8,8 @@ services:
         class: Umanit\BlockCollectionBundle\BlockManager\QuoteBlockManager
         arguments: ['@twig']
         tags: ['umanit_block.manager']
+
+    umanit_block_collection.block_manager.wysiwyg:
+        class: Umanit\BlockCollectionBundle\BlockManager\WysiwygBlockManager
+        arguments: ['@twig']
+        tags: ['umanit_block.manager']
