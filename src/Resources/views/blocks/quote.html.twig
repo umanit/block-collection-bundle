@@ -1,0 +1,8 @@
+{# @var \Umanit\BlockCollectionBundle\Entity\Block\Quote block #}
+<blockquote>
+  <p>{{ block.quote }}</p>
+
+  {% if block.author is not null %}
+    <footer>{{ block.author }}</footer>
+  {% endif %}
+</blockquote>

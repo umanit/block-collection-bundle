@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: false
+        autoconfigure: false
+        public: false
+
+    umanit_block_collection.block_manager.quote:
+        class: Umanit\BlockCollectionBundle\BlockManager\QuoteBlockManager
+        arguments: ['@twig']
+        tags: ['umanit_block.manager']
