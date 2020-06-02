@@ -1,0 +1,10 @@
+{# @var \Umanit\BlockCollectionBundle\Entity\Block\Faq block #}
+<ul>
+  {# @var \Umanit\BlockCollectionBundle\Entity\Block\FaqQuestion faq_question #}
+  {% for faq_question in block.questions %}
+    <li>
+      <p>{{ faq_question.question }}</p>
+      <p>{{ faq_question.answer|raw }}</p>
+    </li>
+  {% endfor %}
+</ul>

@@ -4,6 +4,11 @@ services:
         autoconfigure: false
         public: false
 
+    umanit_block_collection.block_manager.faq:
+        class: Umanit\BlockCollectionBundle\BlockManager\FaqBlockManager
+        arguments: ['@twig']
+        tags: ['umanit_block.manager']
+
     umanit_block_collection.block_manager.quote:
         class: Umanit\BlockCollectionBundle\BlockManager\QuoteBlockManager
         arguments: ['@twig']
