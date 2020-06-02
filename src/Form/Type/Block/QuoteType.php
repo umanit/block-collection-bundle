@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Umanit\BlockBundle\Form\AbstractBlockType;
 
-class QuoteType extends AbstractBlockType
+final class QuoteType extends AbstractBlockType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
