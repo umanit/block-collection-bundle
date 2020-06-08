@@ -39,7 +39,7 @@ class Image extends Block
         $this->path = $path;
     }
 
-    public function getAlt(): string
+    public function getAlt(): ?string
     {
         return $this->alt;
     }

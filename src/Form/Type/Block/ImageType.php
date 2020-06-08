@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Umanit\BlockCollectionBundle\Form\Type\Block;
 
 use Artgris\Bundle\MediaBundle\Form\Type\MediaType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Umanit\BlockBundle\Form\AbstractBlockType;
@@ -13,10 +14,15 @@ final class ImageType extends AbstractBlockType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        $builder->add('path', MediaType::class, [
-            'conf'        => 'default',
-            'readonly'    => true,
-            'constraints' => [new NotBlank()],
-        ]);
+        $builder
+            ->add('path', MediaType::class, [
+                'conf'        => 'default',
+                'readonly'    => true,
+                'constraints' => [new NotBlank()],
+            ])
+            ->add('alt', TextType::class, [
+                'required' => false,
+            ])
+        ;
     }
 }
