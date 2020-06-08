@@ -23,11 +23,9 @@ class Wysiwyg extends Block
         return $this->text;
     }
 
-    public function setText(string $text): self
+    public function setText(string $text): void
     {
         $this->text = $text;
-
-        return $this;
     }
 
     public function __toString()

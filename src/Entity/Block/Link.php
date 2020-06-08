@@ -31,11 +31,9 @@ class Link extends Block
         return $this->label;
     }
 
-    public function setLabel(string $label): self
+    public function setLabel(string $label): void
     {
         $this->label = $label;
-
-        return $this;
     }
 
     public function getUrl(): ?string
@@ -43,11 +41,9 @@ class Link extends Block
         return $this->url;
     }
 
-    public function setUrl(string $url): self
+    public function setUrl(string $url): void
     {
         $this->url = $url;
-
-        return $this;
     }
 
     public function __toString()

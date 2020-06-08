@@ -28,11 +28,9 @@ class Quote extends Block
         return $this->quote;
     }
 
-    public function setQuote(string $quote): self
+    public function setQuote(string $quote): void
     {
         $this->quote = $quote;
-
-        return $this;
     }
 
     public function getAuthor(): ?string
@@ -40,11 +38,9 @@ class Quote extends Block
         return $this->author;
     }
 
-    public function setAuthor(?string $author): self
+    public function setAuthor(?string $author): void
     {
         $this->author = $author;
-
-        return $this;
     }
 
     public function __toString()
