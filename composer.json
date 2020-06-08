@@ -22,7 +22,8 @@
     "umanit/block-bundle": "2.x-dev",
     "symfony/twig-bundle": "^4.4",
     "doctrine/doctrine-bundle": "^1.12",
-    "friendsofsymfony/ckeditor-bundle": "^2.2"
+    "friendsofsymfony/ckeditor-bundle": "^2.2",
+    "artgris/media-bundle": "^5.2"
   },
   "autoload": {
     "psr-4": {
