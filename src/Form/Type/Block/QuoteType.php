@@ -15,7 +15,9 @@ final class QuoteType extends AbstractBlockType
     {
         $builder
             ->add('quote', TextareaType::class)
-            ->add('author', TextType::class)
+            ->add('author', TextType::class, [
+                'required' => false,
+            ])
         ;
     }
 }
