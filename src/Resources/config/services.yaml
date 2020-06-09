@@ -14,6 +14,11 @@ services:
         arguments: ['@twig']
         tags: ['umanit_block.manager']
 
+    umanit_block_collection.block_manager.images_list:
+        class: Umanit\BlockCollectionBundle\BlockManager\ImagesListBlockManager
+        arguments: ['@twig']
+        tags: ['umanit_block.manager']
+
     umanit_block_collection.block_manager.link:
         class: Umanit\BlockCollectionBundle\BlockManager\LinkBlockManager
         arguments: ['@twig']
