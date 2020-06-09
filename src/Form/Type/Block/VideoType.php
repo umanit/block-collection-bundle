@@ -6,7 +6,6 @@ namespace Umanit\BlockCollectionBundle\Form\Type\Block;
 
 use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\NotBlank;
 use Umanit\BlockBundle\Form\AbstractBlockType;
 
 final class VideoType extends AbstractBlockType
@@ -15,7 +14,6 @@ final class VideoType extends AbstractBlockType
     {
         $builder->add('url', UrlType::class, [
             'default_protocol' => 'https',
-            'constraints'      => [new NotBlank()],
         ]);
     }
 }

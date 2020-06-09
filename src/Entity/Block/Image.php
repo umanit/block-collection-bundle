@@ -18,7 +18,7 @@ class Image extends Block
      * @var string
      *
      * @ORM\Column(type="string")
-     * @Assert\NotNull()
+     * @Assert\NotBlank()
      */
     private $path;
 
