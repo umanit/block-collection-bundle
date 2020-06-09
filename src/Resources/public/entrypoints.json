@@ -1,0 +1,12 @@
+{
+  "entrypoints": {
+    "sylius/blocks-initialisator": {
+      "css": [
+        "./sylius/blocks-initialisator.css"
+      ],
+      "js": [
+        "./sylius/blocks-initialisator.js"
+      ]
+    }
+  }
+}

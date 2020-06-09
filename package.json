@@ -1,0 +1,25 @@
+{
+  "author": "UmanIT <contact@umanit.fr>",
+  "license": "UNLICENSED",
+  "private": true,
+  "devDependencies": {
+    "@symfony/webpack-encore": "^0.30.2",
+    "blueimp-file-upload": "^10.29.0",
+    "core-js": "^3.6.5",
+    "cropperjs": "^1.5.7",
+    "jquery": "^3.5.1",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^8.0.2",
+    "semantic-ui-dimmer": "^2.4.0",
+    "semantic-ui-modal": "^2.4.1",
+    "semantic-ui-transition": "^2.3.1",
+    "symfony-collection": "ninsuo/symfony-collection"
+  },
+  "scripts": {
+    "dev-server": "encore dev-server",
+    "dev": "encore dev",
+    "watch": "encore dev --watch",
+    "build": "encore production"
+  },
+  "dependencies": {}
+}
