@@ -1,3 +1,25 @@
+{% block ckeditor_widget %}
+  {%- set ckeditor_destroy -%}
+    {{ ckeditor_destroy(id) }}
+  {%- endset -%}
+  {%- set ckeditor_instanciate -%}
+    {{ ckeditor_widget(id, config, {
+      auto_inline: auto_inline,
+      inline: inline,
+      input_sync: input_sync,
+      filebrowsers: filebrowsers
+    }) }}
+  {%- endset -%}
+
+  <textarea {{ block('widget_attributes') }}
+      data-ckeditor-destroy="{{ ckeditor_destroy|e('html_attr') }}"
+      data-ckeditor-instanciate="{{ ckeditor_instanciate|e('html_attr') }}">{{ value }}</textarea>
+
+  {% if enable and not async %}
+    {{ block('_ckeditor_javascript') }}
+  {% endif %}
+{% endblock %}
+
 {% block artgris_media_widget %}
   {% apply spaceless %}
     {% with {'form': form, 'collection': false, 'id': form.vars.id, 'conf': conf } only %}
