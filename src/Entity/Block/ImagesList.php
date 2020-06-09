@@ -18,7 +18,7 @@ class ImagesList extends Block
     /**
      * @var ArrayCollection|null
      *
-     * @ORM\OneToMany(targetEntity="Umanit\BlockCollectionBundle\Entity\Block\ImagesListImage", mappedBy="list"
+     * @ORM\OneToMany(targetEntity="Umanit\BlockCollectionBundle\Entity\Block\ImagesListImage", mappedBy="list",
      *                fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"persist"})
      * @ORM\OrderBy({"position"="ASC"})
      */
