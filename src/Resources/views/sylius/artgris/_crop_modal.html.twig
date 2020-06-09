@@ -1,0 +1,48 @@
+<div
+    class="ui large modal artgris-media-crop-modal" id="crop-modal-{{ form.vars.id }}"
+    tabindex="-1" role="dialog" aria-labelledby="crop-modal-label" data-ratio="{{ crop_options.ratio|default }}"
+>
+  <div class="header">{{ 'Image crop'|trans }}</div>
+  <div class="scrolling content">
+    <div class="ui equal width grid">
+      <div class="row">
+        <div class="column">
+          {% if crop_options.allow_rotation %}
+            <div class="ui icon buttons">
+              <button type="button" class="ui button js-rotate-left"><i class="undo icon"></i></button>
+              <button type="button" class="ui button js-rotate-right"><i class="redo icon"></i></button>
+            </div>
+          {% endif %}
+
+          {% if crop_options.allow_flip %}
+            <div class="ui icon buttons">
+              <button type="button" class="ui button js-flip-x"><i class="exchange icon"></i></button>
+              <button type="button" class="ui button js-flip-y"><i class="clockwise rotated exchange icon"></i></button>
+            </div>
+          {% endif %}
+        </div>
+        {% if crop_options.display_crop_data %}
+          <div class="right aligned column">
+            <div class="ui small labels">
+              {% for el in ['x', 'y', 'width', 'height'] %}
+                <div class="ui label">{{ (el ~ ':')|capitalize|trans }}
+                  <div class="detail js-{{ el }}">0</div>
+                </div>
+              {% endfor %}
+              {% if crop_options.ratio|default %}
+                <div class="ui blue label">{{ 'Ratio: '|trans ~ crop_options.ratio|round(2) }}</div>
+              {% endif %}
+            </div>
+          </div>
+        {% endif %}
+      </div>
+      <div class="row">
+        <div class="column modal-crop-container" style="max-height: 550px;"></div>
+      </div>
+    </div>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">{{ 'Cancel'|trans }}</div>
+    <div class="ui positive button js-save">{{ 'Apply'|trans }}</div>
+  </div>
+</div>

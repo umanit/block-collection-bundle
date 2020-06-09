@@ -1,0 +1,13 @@
+<div class="ui large modal js-artgris-modal" id="artgris-filemanager-modal-{{ form.vars.id }}" tabindex="-1" role="dialog">
+  <div class="header">
+    {{ 'File Manager'|trans }}
+  </div>
+  <div class="content">
+    <iframe
+        class="iframe" data-src="{{ path('file_manager', {module:1, conf:conf, tree:tree}) }}"
+        width="100%" height="500" frameborder="0"></iframe>
+  </div>
+  <div class="actions">
+    <div class="ui black deny button">{{ 'Close'|trans }}</div>
+  </div>
+</div>

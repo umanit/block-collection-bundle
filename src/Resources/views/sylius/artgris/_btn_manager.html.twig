@@ -1,0 +1,24 @@
+<div class="ui icon buttons">
+  {% if not form.vars.required %}
+    <button class="ui icon button js-artgris-erase" type="button">
+      <i class="eraser icon red"></i>
+    </button>
+  {% endif %}
+
+  <span class="ui icon button fileinput-button">
+    <i class="plus icon green"></i>
+    <input
+        class="fileupload {{ (not collection ?? false) ? 'alone' }}" type="file"
+        data-url="{{ path('file_manager_upload', { conf:conf }) }}" name="files[]" multiple=""
+    >
+  </span>
+
+  {% if form.vars.display_file_manager %}
+    <button
+        type="button" class="ui icon button js-artgris-modal-trigger"
+        data-target="#artgris-filemanager-modal-{{ id }}"
+    >
+      <i class="folder open icon"></i>
+    </button>
+  {% endif %}
+</div>
