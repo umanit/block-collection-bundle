@@ -189,3 +189,36 @@ export const initFileUpload = (container, selector) => {
     item.classList.add('fileupload-processed');
   });
 };
+
+export const processCKEditor = () => {
+  if ('undefined' !== typeof CKEDITOR) {
+    // Auto-initialize on new block
+    document.addEventListener('ublock.after_added', ({ detail: { item } }) => {
+      item.querySelectorAll('.js-ckeditor').forEach(wysiwyg => {
+        const destroy = new Function(wysiwyg.getAttribute('data-ckeditor-destroy'));
+        const instanciate = new Function(wysiwyg.getAttribute('data-ckeditor-instanciate'));
+
+        destroy();
+        instanciate();
+      });
+    });
+
+    // Prevent CKEditor crash on sort
+    let ckeditorConfigs = [];
+
+    document.addEventListener('ublock.on_sort_start', ({ detail: { panel } }) => {
+      panel.querySelectorAll('.js-ckeditor').forEach(wysiwyg => {
+        const id = wysiwyg.id;
+        ckeditorConfigs[id] = CKEDITOR.instances[id].config;
+        CKEDITOR.instances[id].destroy();
+      });
+    });
+
+    document.addEventListener('ublock.on_sort_end', ({ detail: { panel } }) => {
+      panel.querySelectorAll('.js-ckeditor').forEach(wysiwyg => {
+        const id = wysiwyg.id;
+        CKEDITOR.replace(id, ckeditorConfigs[id]);
+      });
+    });
+  }
+};
