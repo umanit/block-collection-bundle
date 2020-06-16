@@ -1,9 +1,9 @@
 {# @var \Umanit\BlockCollectionBundle\Entity\Block\ImagesList block #}
 <ul>
   {# @var \Umanit\BlockCollectionBundle\Entity\Block\ImagesListImage image #}
-  {% for image in block.images %}
+  {% for path in block.images %}
     <li>
-      <img src="{{ image.path }}" alt="{{ image.alt }}" />
+      <img src="{{ path }}" alt="" />
     </li>
   {% endfor %}
 </ul>

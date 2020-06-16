@@ -4,8 +4,6 @@ declare(strict_types=1);
 
 namespace Umanit\BlockCollectionBundle\Entity\Block;
 
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Umanit\BlockBundle\Entity\Block;
 
@@ -16,41 +14,20 @@ use Umanit\BlockBundle\Entity\Block;
 class ImagesList extends Block
 {
     /**
-     * @var ArrayCollection|null
+     * @var array|null
      *
-     * @ORM\OneToMany(targetEntity="Umanit\BlockCollectionBundle\Entity\Block\ImagesListImage", mappedBy="list",
-     *                fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"persist"})
-     * @ORM\OrderBy({"position"="ASC"})
+     * @ORM\Column(type="simple_array", nullable=true)
      */
     protected $images;
 
-    public function __construct()
-    {
-        $this->images = new ArrayCollection();
-    }
-
-    public function getImages(): Collection
+    public function getImages(): ?array
     {
         return $this->images;
     }
 
-    public function addImage(ImagesListImage $image): void
+    public function setImages(?array $images): void
     {
-        if (!$this->images->contains($image)) {
-            $this->images[] = $image;
-            $image->setList($this);
-        }
-    }
-
-    public function removeImage(ImagesListImage $image): void
-    {
-        if ($this->images->contains($image)) {
-            $this->images->removeElement($image);
-
-            if ($image->getList() === $this) {
-                $image->setList(null);
-            }
-        }
+        $this->images = $images;
     }
 
     public function __toString()
