@@ -19,7 +19,7 @@ class Faq extends Block
      * @var ArrayCollection|null
      *
      * @ORM\OneToMany(targetEntity="Umanit\BlockCollectionBundle\Entity\Block\FaqQuestion", mappedBy="faq",
-     *                fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"persist"})
+     *                fetch="EXTRA_LAZY", orphanRemoval=true, cascade={"persist", "remove"})
      * @ORM\OrderBy({"position"="ASC"})
      */
     protected $questions;

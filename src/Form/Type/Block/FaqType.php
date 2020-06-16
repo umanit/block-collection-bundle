@@ -17,6 +17,7 @@ final class FaqType extends AbstractBlockType
     {
         $builder->add('questions', CollectionType::class, [
             'entry_type'   => FaqQuestionType::class,
+            'by_reference' => false,
             'allow_add'    => true,
             'allow_delete' => true,
         ]);
