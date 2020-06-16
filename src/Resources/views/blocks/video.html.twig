@@ -1,2 +1,7 @@
 {# @var \Umanit\BlockCollectionBundle\Entity\Block\Video block #}
-<a href="{{ block.url }}">{{ block.url }}</a>
+
+<ul>
+  <li>URL: <a href="{{ block.url }}">{{ block.url }}</a></li>
+  <li>Type: {{ umanit_block_collection_embeddable_video_type(block.url) }}</li>
+  <li>ID: {{ umanit_block_collection_embeddable_video_id(block.url) }}</li>
+</ul>

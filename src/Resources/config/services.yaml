@@ -65,3 +65,12 @@ services:
         class: Umanit\BlockCollectionBundle\Validator\Constraints\EmbeddableVideoValidator
         arguments: [!tagged_iterator umanit_block_collection.video_detector]
         tags: ['validator.constraint_validator']
+
+    umanit_block_collection.twig_extension:
+        class: Umanit\BlockCollectionBundle\Twig\BlockCollectionExtension
+        tags: ['twig.extension']
+
+    umanit_block_collection.twig_runtime:
+        class: Umanit\BlockCollectionBundle\Twig\BlockCollectionRuntime
+        arguments: [!tagged_iterator umanit_block_collection.video_detector]
+        tags: ['twig.runtime']
