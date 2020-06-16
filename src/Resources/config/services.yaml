@@ -48,3 +48,20 @@ services:
         class: Umanit\BlockCollectionBundle\BlockManager\WysiwygBlockManager
         arguments: ['@twig']
         tags: ['umanit_block.manager']
+
+    umanit_block_collection.video_detector.vimeo:
+        class: Umanit\BlockCollectionBundle\VideoDetector\Vimeo
+        tags: ['umanit_block_collection.video_detector']
+
+    umanit_block_collection.video_detector.youtube:
+        class: Umanit\BlockCollectionBundle\VideoDetector\YouTube
+        tags: ['umanit_block_collection.video_detector']
+
+    umanit_block_collection.video_detector.youku:
+        class: Umanit\BlockCollectionBundle\VideoDetector\Youku
+        tags: ['umanit_block_collection.video_detector']
+
+    umanit_block_collection.validator.embeddable_video:
+        class: Umanit\BlockCollectionBundle\Validator\Constraints\EmbeddableVideoValidator
+        arguments: [!tagged_iterator umanit_block_collection.video_detector]
+        tags: ['validator.constraint_validator']
