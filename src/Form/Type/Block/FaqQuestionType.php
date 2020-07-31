@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Umanit\BlockCollectionBundle\Form\Type\Block;
 
+use Artgris\Bundle\MediaBundle\Form\Type\MediaType;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
@@ -19,6 +20,20 @@ final class FaqQuestionType extends AbstractType
         $builder
             ->add('question', TextType::class)
             ->add('answer', CKEditorType::class)
+            ->add('file', MediaType::class, [
+                'conf'     => 'default',
+                'readonly' => true,
+            ])
+            ->add('buttonText', TextType::class, [
+                'required' => false,
+            ])
+            ->add('image', MediaType::class, [
+                'conf'     => 'default',
+                'readonly' => true,
+            ])
+            ->add('alt', TextType::class, [
+                'required' => false,
+            ])
             ->add('position', HiddenType::class, ['attr' => ['data-target' => 'position']])
         ;
     }
