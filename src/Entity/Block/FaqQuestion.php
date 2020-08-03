@@ -56,8 +56,7 @@ class FaqQuestion
     private $buttonText;
 
     /**
-     * @ORM\Column(type="string")
-     * @Assert\NotBlank()
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $image;
 
