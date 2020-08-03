@@ -46,7 +46,6 @@ class FaqQuestion
 
     /**
      * @ORM\Column(type="string")
-     * @Assert\NotBlank()
      */
     private $file;
 
