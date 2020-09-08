@@ -5,6 +5,12 @@
     <li>
       <p>{{ faq_question.question }}</p>
       <p>{{ faq_question.answer|raw }}</p>
+      {% if faq_question.filePath %}
+        <a href="{{ faq_question.filePath }}" download>{{ faq_question.fileButtonPath }}</a>
+      {% endif %}
+      {% if faq_question.imagePath %}
+        <img src="{{ faq_question.imagePath }}" alt="{{ faq_question.imageAlt }}" />
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

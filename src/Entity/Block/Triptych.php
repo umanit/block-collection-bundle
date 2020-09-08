@@ -44,6 +44,13 @@ class Triptych extends Block
      */
     private $imageAlt;
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(type="boolean", nullable=true)
+     */
+    private $imagePositionLeft;
+
     public function getTitle(): ?string
     {
         return $this->title;
@@ -82,6 +89,18 @@ class Triptych extends Block
     public function setImageAlt(?string $imageAlt): void
     {
         $this->imageAlt = $imageAlt;
+    }
+
+    public function isImagePositionLeft(): ?bool
+    {
+        return $this->imagePositionLeft;
+    }
+
+    public function setImagePositionLeft(bool $imagePositionLeft): self
+    {
+        $this->imagePositionLeft = $imagePositionLeft;
+
+        return $this;
     }
 
     public function __toString()

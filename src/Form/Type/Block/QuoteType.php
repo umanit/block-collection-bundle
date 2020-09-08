@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Umanit\BlockCollectionBundle\Form\Type\Block;
 
+use Artgris\Bundle\MediaBundle\Form\Type\MediaType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -16,6 +17,16 @@ final class QuoteType extends AbstractBlockType
         $builder
             ->add('quote', TextareaType::class)
             ->add('author', TextType::class, [
+                'required' => false,
+            ])
+            ->add('imagePath', MediaType::class, [
+                'conf'     => 'default',
+                'required' => false,
+            ])
+            ->add('imageAlt', TextType::class, [
+                'required' => false,
+            ])
+            ->add('role', TextType::class, [
                 'required' => false,
             ])
         ;

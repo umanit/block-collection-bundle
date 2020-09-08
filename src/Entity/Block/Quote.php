@@ -23,6 +23,21 @@ class Quote extends Block
      */
     private $author;
 
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $imagePath;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageAlt;
+
+    /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $role;
+
     public function getQuote(): ?string
     {
         return $this->quote;
@@ -41,6 +56,36 @@ class Quote extends Block
     public function setAuthor(?string $author): void
     {
         $this->author = $author;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(?string $imagePath): void
+    {
+        $this->imagePath = $imagePath;
+    }
+
+    public function getImageAlt(): ?string
+    {
+        return $this->imageAlt;
+    }
+
+    public function setImageAlt(?string $imageAlt): void
+    {
+        $this->imageAlt = $imageAlt;
+    }
+
+    public function getRole(): ?string
+    {
+        return $this->role;
+    }
+
+    public function setRole(?string $role): void
+    {
+        $this->role = $role;
     }
 
     public function __toString()

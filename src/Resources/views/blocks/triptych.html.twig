@@ -1,6 +1,12 @@
 {# @var \Umanit\BlockCollectionBundle\Entity\Block\Triptych block #}
 <h2>{{ block.title }}</h2>
 
-<img src="{{ block.imagePath }}" alt="{{ block.imageAlt }}" />
+{% if not imagePositionLeft %}
+  <img src="{{ block.imagePath }}" alt="{{ block.imageAlt }}" />
+{% endif %}
 
 {{ block.text|raw }}
+
+{% if imagePositionLeft %}
+  <img src="{{ block.imagePath }}" alt="{{ block.imageAlt }}" />
+{% endif %}

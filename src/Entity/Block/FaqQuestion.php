@@ -45,6 +45,30 @@ class FaqQuestion
     private $answer;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $filePath;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $fileButtonPath;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", nullable=true)
+     */
+    private $imagePath;
+
+    /**
+     * @var string
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $imageAlt;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="position", type="integer")
@@ -94,5 +118,53 @@ class FaqQuestion
     public function setPosition(?int $position): void
     {
         $this->position = $position;
+    }
+
+    public function getFilePath(): ?string
+    {
+        return $this->filePath;
+    }
+
+    public function setFilePath(?string $filePath): self
+    {
+        $this->filePath = $filePath;
+
+        return $this;
+    }
+
+    public function getFileButtonPath(): ?string
+    {
+        return $this->fileButtonPath;
+    }
+
+    public function setFileButtonPath(?string $fileButtonPath): self
+    {
+        $this->fileButtonPath = $fileButtonPath;
+
+        return $this;
+    }
+
+    public function getImagePath(): ?string
+    {
+        return $this->imagePath;
+    }
+
+    public function setImagePath(?string $imagePath): self
+    {
+        $this->imagePath = $imagePath;
+
+        return $this;
+    }
+
+    public function getImageAlt(): ?string
+    {
+        return $this->imageAlt;
+    }
+
+    public function setImageAlt(?string $imageAlt): self
+    {
+        $this->imageAlt = $imageAlt;
+
+        return $this;
     }
 }
