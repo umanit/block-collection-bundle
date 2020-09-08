@@ -25,7 +25,7 @@ class TriptychType extends AbstractBlockType
             ->add('imageAlt', TextType::class, [
                 'required' => false,
             ])
-            ->add('imagePosition', CheckboxType::class, [
+            ->add('imagePositionLeft', CheckboxType::class, [
                 'required' => false,
             ])
         ;

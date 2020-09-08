@@ -20,18 +20,17 @@ final class FaqQuestionType extends AbstractType
         $builder
             ->add('question', TextType::class)
             ->add('answer', CKEditorType::class)
-            ->add('file', MediaType::class, [
+            ->add('filePath', MediaType::class, [
                 'conf'     => 'default',
-                'readonly' => true,
-            ])
-            ->add('buttonText', TextType::class, [
                 'required' => false,
             ])
-            ->add('image', MediaType::class, [
-                'conf'     => 'default',
-                'readonly' => true,
+            ->add('fileButtonPath', TextType::class, [
+                'required' => false,
             ])
-            ->add('alt', TextType::class, [
+            ->add('imagePath', MediaType::class, [
+                'conf'     => 'default',
+            ])
+            ->add('imageAlt', TextType::class, [
                 'required' => false,
             ])
             ->add('position', HiddenType::class, ['attr' => ['data-target' => 'position']])

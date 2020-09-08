@@ -24,14 +24,14 @@ class Quote extends Block
     private $author;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="string", nullable=true)
      */
-    private $image;
+    private $imagePath;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $alt;
+    private $imageAlt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)

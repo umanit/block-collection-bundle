@@ -19,12 +19,11 @@ final class QuoteType extends AbstractBlockType
             ->add('author', TextType::class, [
                 'required' => false,
             ])
-            ->add('image', MediaType::class, [
+            ->add('imagePath', MediaType::class, [
                 'conf'     => 'default',
-                'readonly' => true,
                 'required' => false,
             ])
-            ->add('alt', TextType::class, [
+            ->add('imageAlt', TextType::class, [
                 'required' => false,
             ])
             ->add('role', TextType::class, [
