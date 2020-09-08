@@ -58,24 +58,24 @@ class Quote extends Block
         $this->author = $author;
     }
 
-    public function getImage(): ?string
+    public function getImagePath(): ?string
     {
-        return $this->image;
+        return $this->imagePath;
     }
 
-    public function setImage(?string $image): void
+    public function setImagePath(?string $imagePath): void
     {
-        $this->image = $image;
+        $this->imagePath = $imagePath;
     }
 
-    public function getAlt(): ?string
+    public function getImageAlt(): ?string
     {
-        return $this->alt;
+        return $this->imageAlt;
     }
 
-    public function setAlt(?string $alt): void
+    public function setImageAlt(?string $imageAlt): void
     {
-        $this->alt = $alt;
+        $this->imageAlt = $imageAlt;
     }
 
     public function getRole(): ?string

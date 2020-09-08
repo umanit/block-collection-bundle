@@ -46,7 +46,7 @@ class FaqQuestion
 
     /**
      * @var string
-     * @ORM\Column(type="string", nullable=true, length=255)
+     * @ORM\Column(type="string", nullable=true)
      */
     private $filePath;
 
