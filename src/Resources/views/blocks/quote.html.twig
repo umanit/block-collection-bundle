@@ -5,4 +5,8 @@
   {% if block.author is not null %}
     <footer>{{ block.author }}</footer>
   {% endif %}
+
+  {% if block.imagePath %}
+    <img src="{{ block.imagePath }}" alt="{{ block.imageAlt }}" />
+  {% endif %}
 </blockquote>
