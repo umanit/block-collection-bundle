@@ -23,7 +23,7 @@
     "symfony/twig-bundle": "^4.4",
     "doctrine/doctrine-bundle": "^1.12",
     "friendsofsymfony/ckeditor-bundle": "^2.2",
-    "artgris/media-bundle": "^5.2"
+    "artgris/media-bundle": "^5.2|^6.0"
   },
   "autoload": {
     "psr-4": {
