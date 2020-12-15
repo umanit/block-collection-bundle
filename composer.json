@@ -19,7 +19,7 @@
   "minimum-stability": "dev",
   "require": {
     "php": "^7.3",
-    "umanit/block-bundle": "2.x-dev",
+    "umanit/block-bundle": "^2.0",
     "symfony/twig-bundle": "^4.4",
     "doctrine/doctrine-bundle": "^1.12|^2.1",
     "friendsofsymfony/ckeditor-bundle": "^2.2",
