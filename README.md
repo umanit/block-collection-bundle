@@ -1,7 +1,5 @@
 # Umanit Block Collection Bundle
 
-## 🚧 WIP bundle
-
 A collection of blocks ready to use with [umanit/block-bundle](https://github.com/umanit/block-bundle).
 
 ## Prerequisites
