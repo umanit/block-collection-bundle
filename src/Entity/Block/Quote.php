@@ -16,27 +16,27 @@ class Quote extends Block
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
-    private $quote;
+    protected $quote;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $author;
+    protected $author;
 
     /**
      * @ORM\Column(type="string", nullable=true)
      */
-    private $imagePath;
+    protected $imagePath;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $imageAlt;
+    protected $imageAlt;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $role;
+    protected $role;
 
     public function getQuote(): ?string
     {

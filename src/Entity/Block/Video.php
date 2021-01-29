@@ -20,7 +20,7 @@ class Video extends Block
      * @Assert\NotBlank()
      * @UmanitAssert\EmbeddableVideo()
      */
-    private $url;
+    protected $url;
 
     public function getUrl(): ?string
     {

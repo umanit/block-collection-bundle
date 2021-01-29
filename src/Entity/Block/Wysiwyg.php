@@ -16,7 +16,7 @@ class Wysiwyg extends Block
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
-    private $text;
+    protected $text;
 
     public function getText(): ?string
     {

@@ -20,7 +20,7 @@ class Triptych extends Block
      * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\NotBlank()
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
@@ -28,28 +28,28 @@ class Triptych extends Block
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
-    private $text;
+    protected $text;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", nullable=true)
      */
-    private $imagePath;
+    protected $imagePath;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $imageAlt;
+    protected $imageAlt;
 
     /**
      * @var boolean
      *
      * @ORM\Column(type="boolean", nullable=true)
      */
-    private $imagePositionLeft;
+    protected $imagePositionLeft;
 
     public function getTitle(): ?string
     {

@@ -20,14 +20,14 @@ class Image extends Block
      * @ORM\Column(type="string")
      * @Assert\NotBlank()
      */
-    private $path;
+    protected $path;
 
     /**
      * @var string
      *
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $alt;
+    protected $alt;
 
     public function getPath(): string
     {

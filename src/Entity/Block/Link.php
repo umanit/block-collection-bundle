@@ -18,13 +18,13 @@ class Link extends Block
      * @ORM\Column(type="string", length=255)
      * @Assert\NotBlank()
      */
-    private $label;
+    protected $label;
 
     /**
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
-    private $url;
+    protected $url;
 
     public function getLabel(): ?string
     {
