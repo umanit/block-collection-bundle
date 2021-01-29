@@ -20,7 +20,7 @@ class FaqQuestion
      * @ORM\GeneratedValue()
      * @ORM\Column(type="integer")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var Faq
@@ -42,31 +42,31 @@ class FaqQuestion
      * @ORM\Column(type="text")
      * @Assert\NotBlank()
      */
-    private $answer;
+    protected $answer;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private $filePath;
+    protected $filePath;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private $fileButtonPath;
+    protected $fileButtonPath;
 
     /**
      * @var string
      * @ORM\Column(type="string", nullable=true)
      */
-    private $imagePath;
+    protected $imagePath;
 
     /**
      * @var string
      * @ORM\Column(type="string", length=255, nullable=true)
      */
-    private $imageAlt;
+    protected $imageAlt;
 
     /**
      * @var int
