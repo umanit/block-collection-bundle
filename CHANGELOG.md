@@ -6,6 +6,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.2] - 2021-03-24
+### Modified
+- Add Symfony 5.2 compatiblity
+
 ## [1.0.1] - 2021-01-29
 ### Modified
 - Pass block attributes from `private` to `protected` to allow inheritance
@@ -13,6 +17,7 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 ## [1.0.0] - 2020-12-15
 Initial release with a few blocks.
 
-[Unreleased]: https://github.com/umanit/block-collection-bundle/compare/1.0.1...HEAD
+[Unreleased]: https://github.com/umanit/block-collection-bundle/compare/1.0.2...HEAD
+[1.0.2]: https://github.com/umanit/block-collection-bundle/compare/1.0.2...1.0.1
 [1.0.1]: https://github.com/umanit/block-collection-bundle/compare/1.0.1...1.0.0
 [1.0.0]: https://github.com/umanit/block-collection-bundle/releases/tag/1.0.0
