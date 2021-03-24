@@ -20,7 +20,7 @@
   "require": {
     "php": "^7.3",
     "umanit/block-bundle": "^2.0",
-    "symfony/twig-bundle": "^4.4",
+    "symfony/twig-bundle": "^4.4|^5.2",
     "doctrine/doctrine-bundle": "^1.12|^2.1",
     "friendsofsymfony/ckeditor-bundle": "^2.2",
     "artgris/media-bundle": "^5.2|^6.0"
