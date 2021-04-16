@@ -1,13 +1,20 @@
-<div class="ui large modal js-artgris-modal" id="artgris-filemanager-modal-{{ form.vars.id }}" tabindex="-1" role="dialog">
-  <div class="header">
-    {{ 'File Manager'|trans }}
-  </div>
-  <div class="content">
-    <iframe
-        class="iframe" data-src="{{ path('file_manager', {module:1, conf:conf, tree:tree}) }}"
-        width="100%" height="500" frameborder="0"></iframe>
-  </div>
-  <div class="actions">
-    <div class="ui black deny button">{{ 'Close'|trans }}</div>
+<div {{ stimulus_controller('umanit/ux-block-collection-bundle/modal') }}
+    data-umanit--ux-block-collection-bundle--media-target="modal">
+  <div class="c-modal-overlay" aria-hidden="true" data-umanit--ux-block-collection-bundle--modal-target="overlay"></div>
+  <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
+       data-umanit--ux-block-collection-bundle--modal-target="modal">
+    <button class="c-modal__btn-close" data-action="click->umanit--ux-block-collection-bundle--modal#close">
+      <span>{{ 'Close'|trans }}</span>
+    </button>
+    <h5>{{ 'File Manager'|trans }}</h5>
+
+    <iframe data-umanit--ux-block-collection-bundle--media-target="iframe"
+            data-src="{{ path('file_manager', { module: 1, conf: conf, tree: tree }) }}"
+            width="100%" height="500" frameborder="0"></iframe>
+
+    <button type="button" class="c-modal__btn" aria-label="{{ 'Close'|trans }}"
+            data-action="click->umanit--ux-block-collection-bundle--modal#close">
+      {{ 'Close'|trans }}
+    </button>
   </div>
 </div>

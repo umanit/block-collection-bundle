@@ -1,0 +1,53 @@
+{
+  "name": "@umanit/ux-block-collection-bundle",
+  "description": "Package for umanit/block-collection-bundle",
+  "license": "MIT",
+  "version": "0.0.1",
+  "symfony": {
+    "controllers": {
+      "crop": {
+        "main": "dist/crop.js",
+        "webpackMode": "eager",
+        "fetch": "eager",
+        "enabled": true
+      },
+      "media": {
+        "main": "dist/media.js",
+        "webpackMode": "eager",
+        "fetch": "eager",
+        "enabled": true
+      },
+      "modal": {
+        "main": "dist/modal.js",
+        "webpackMode": "eager",
+        "fetch": "eager",
+        "enabled": true
+      }
+    }
+  },
+  "scripts": {
+    "build": "babel src -d dist --copy-files"
+  },
+  "peerDependencies": {
+    "stimulus": "^2.0.0"
+  },
+  "dependencies": {
+    "@umanit/tools": "^1.0.3",
+    "blueimp-file-upload": "^10.29.0",
+    "cropperjs": "^1.5.7",
+    "jquery": "^3.5.1",
+    "semantic-ui-dimmer": "^2.4.0",
+    "semantic-ui-modal": "^2.4.1",
+    "semantic-ui-transition": "^2.3.1",
+    "stimulus-use": "^0.23.0",
+    "symfony-collection": "ninsuo/symfony-collection"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.1",
+    "@babel/core": "^7.12.3",
+    "@babel/plugin-proposal-class-properties": "^7.12.1",
+    "@babel/preset-env": "^7.12.7",
+    "core-js": "^3.0.0",
+    "stimulus": "^2.0.0"
+  }
+}
