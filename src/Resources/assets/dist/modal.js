@@ -62,6 +62,7 @@ var _default = /*#__PURE__*/function (_Controller) {
       }
 
       this.modalTarget.classList.add('active');
+      this.element.style.display = '';
       this.modalTarget.removeAttribute('aria-hidden');
       this.overlayTarget.classList.add('active');
     }
@@ -73,6 +74,7 @@ var _default = /*#__PURE__*/function (_Controller) {
       }
 
       this.modalTarget.classList.remove('active');
+      this.element.style.display = 'none';
       this.overlayTarget.classList.remove('active');
       this.modalTarget.setAttribute('aria-hidden', 'true');
     }

@@ -20,6 +20,7 @@ export default class extends Controller {
     }
 
     this.modalTarget.classList.add('active');
+    this.element.style.display = '';
     this.modalTarget.removeAttribute('aria-hidden');
     this.overlayTarget.classList.add('active');
   }
@@ -30,6 +31,7 @@ export default class extends Controller {
     }
 
     this.modalTarget.classList.remove('active');
+    this.element.style.display = 'none';
     this.overlayTarget.classList.remove('active');
     this.modalTarget.setAttribute('aria-hidden', 'true');
   }
