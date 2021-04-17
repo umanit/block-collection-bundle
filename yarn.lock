@@ -1069,30 +1069,6 @@ binary-extensions@^2.0.0:
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
 
-blueimp-canvas-to-blob@3:
-  version "3.28.0"
-  resolved "https://registry.yarnpkg.com/blueimp-canvas-to-blob/-/blueimp-canvas-to-blob-3.28.0.tgz#c8ab4dc6bb08774a7f273798cdf94b0776adf6c8"
-  integrity sha512-5q+YHzgGsuHQ01iouGgJaPJXod2AzTxJXmVv90PpGrRxU7G7IqgPqWXz+PBmt3520jKKi6irWbNV87DicEa7wg==
-
-blueimp-file-upload@^10.29.0:
-  version "10.31.0"
-  resolved "https://registry.yarnpkg.com/blueimp-file-upload/-/blueimp-file-upload-10.31.0.tgz#46fc4fea4e678b57afbd9008f179e59fc3aa3e84"
-  integrity sha512-dGAxOf9+SsMDvZPTsIUpe0cOk57taMJYE3FocHEUebhn5BnDbu1hcWOmrP8oswIe6V61Qcm9UDuhq/Pv1t/eRw==
-  optionalDependencies:
-    blueimp-canvas-to-blob "3"
-    blueimp-load-image "5"
-    blueimp-tmpl "3"
-
-blueimp-load-image@5:
-  version "5.14.0"
-  resolved "https://registry.yarnpkg.com/blueimp-load-image/-/blueimp-load-image-5.14.0.tgz#e8086415e580df802c33ff0da6b37a8d20205cc6"
-  integrity sha512-g5l+4dCOESBG8HkPLdGnBx8dhEwpQHaOZ0en623sl54o3bGhGMLYGc54L5cWfGmPvfKUjbsY7LOAmcW/xlkBSA==
-
-blueimp-tmpl@3:
-  version "3.19.0"
-  resolved "https://registry.yarnpkg.com/blueimp-tmpl/-/blueimp-tmpl-3.19.0.tgz#1160f79c4ce55bd82d25cfa3df7db116f8d1df62"
-  integrity sha512-v8/Vge6U3uwlAjO9TxeHoYl77C1GJDZBN45pUp+39WyHU/VRzYbnGDhRNYvcT6Lh8jihVsXNZttnDpnYVA4m9w==
-
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -1700,16 +1676,6 @@ isobject@^3.0.0, isobject@^3.0.1:
   resolved "https://registry.yarnpkg.com/isobject/-/isobject-3.0.1.tgz#4e431e92b11a9731636aa1f9c8d1ccbcfdab78df"
   integrity sha1-TkMekrEalzFjaqH5yNHMvP2reN8=
 
-jquery-ui@>=1.0:
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/jquery-ui/-/jquery-ui-1.12.1.tgz#bcb4045c8dd0539c134bc1488cdd3e768a7a9e51"
-  integrity sha1-vLQEXI3QU5wTS8FIjN0+dop6nlE=
-
-jquery@>=1.7, jquery@^3.5.1:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.6.0.tgz#c72a09f15c1bdce142f49dbf1170bdf8adac2470"
-  integrity sha512-JVzAR/AjBvVt2BmYhxRCSYysDsPcssdmTFnzyLEts9qNwmjmu4JTAMYubEfwVOSwpQ1I1sKKFcxhZCI2buerfw==
-
 js-tokens@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
@@ -2084,21 +2050,6 @@ safe-regex@^1.1.0:
   dependencies:
     ret "~0.1.10"
 
-semantic-ui-dimmer@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/semantic-ui-dimmer/-/semantic-ui-dimmer-2.4.0.tgz#4962f5983419cc9b33e8ea25eeaf3dd4812ef00a"
-  integrity sha512-ra7sd+LMtf4ZKXm1AxwemIrj2tuoFPejvVOFEMYGK/gtKu7cXt6TeIbwE7jyZ8w4c9y0SCb2Zpd38iu2wQyqVA==
-
-semantic-ui-modal@^2.4.1:
-  version "2.4.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-modal/-/semantic-ui-modal-2.4.1.tgz#f1d084aa07942947056d25403245d1b01c43734c"
-  integrity sha512-hey0eafUtAIkF7slYABzNWfn3QwpFEWF6Rq9+enowdKm8lnUwRkpLijSHXT5S66aMjjqC1MGxWfhnUwOba1BhQ==
-
-semantic-ui-transition@^2.3.1:
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/semantic-ui-transition/-/semantic-ui-transition-2.3.1.tgz#4e43c65b4d9b923c15f2328543558e48c582d51c"
-  integrity sha512-eQ66Ih+Q9laA/WAwR90EGy2Kt0hiRBiCiOS3DIQBYl/OpcuID2zSecdjh3Q//eTk0yC66yTuVdQKnThbfWzEwA==
-
 semver@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
@@ -2221,13 +2172,6 @@ supports-color@^5.3.0:
   integrity sha512-QjVjwdXIt408MIiAqCX4oUKsgU2EqAGzs2Ppkm4aQYbjm+ZEWEcW4SfFNTr4uMNZma0ey4f5lgLrkB0aX0QMow==
   dependencies:
     has-flag "^3.0.0"
-
-symfony-collection@ninsuo/symfony-collection:
-  version "2.1.30"
-  resolved "https://codeload.github.com/ninsuo/symfony-collection/tar.gz/61e92c33a86676a812c8dfbcaab45dfdfb0c12ff"
-  dependencies:
-    jquery ">=1.7"
-    jquery-ui ">=1.0"
 
 to-fast-properties@^2.0.0:
   version "2.0.0"
