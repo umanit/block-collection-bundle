@@ -6,6 +6,7 @@ export default class extends Controller {
   static targets = ['modal', 'iframe', 'input', 'preview'];
   static values = {
     filePath: String,
+    uploadUrl: String,
   };
 
   connect() {
@@ -65,6 +66,19 @@ export default class extends Controller {
   updateFromCrop(e) {
     this.filePathValue = e.detail.path;
     this.updatePreview();
+  }
+
+  upload(e) {
+    const form = new FormData();
+    form.append('files', e.currentTarget.files[0]);
+
+    ajax(this.uploadUrlValue, {
+      method: 'post',
+      body: form,
+    }).then(({ json: { files } }) => {
+      this.filePathValue = files[0].url;
+      this.updatePreview();
+    }).catch(err => console.error(err));
   }
 
   filePathValueChanged() {

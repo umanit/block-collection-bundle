@@ -23,7 +23,10 @@
 {% block artgris_media_widget %}
   {% apply spaceless %}
     <div {{ stimulus_controller({
-      'umanit/ux-block-collection-bundle/media': { filePath: form.vars.value },
+      'umanit/ux-block-collection-bundle/media': {
+        filePath: form.vars.value,
+        uploadUrl: path('file_manager_upload', { conf:conf }),
+      },
       'umanit/ux-block-collection-bundle/crop': {
         ratio: crop_options.ratio|default,
         url: path('admin_ajax_crop'),

@@ -115,6 +115,25 @@ var _default = /*#__PURE__*/function (_Controller) {
       this.updatePreview();
     }
   }, {
+    key: "upload",
+    value: function upload(e) {
+      var _this2 = this;
+
+      var form = new FormData();
+      form.append('files', e.currentTarget.files[0]);
+      (0, _tools.ajax)(this.uploadUrlValue, {
+        method: 'post',
+        body: form
+      }).then(function (_ref2) {
+        var files = _ref2.json.files;
+        _this2.filePathValue = files[0].url;
+
+        _this2.updatePreview();
+      })["catch"](function (err) {
+        return console.error(err);
+      });
+    }
+  }, {
     key: "filePathValueChanged",
     value: function filePathValueChanged() {
       this.inputTarget.value = this.filePathValue;
@@ -144,5 +163,6 @@ exports["default"] = _default;
 _defineProperty(_default, "targets", ['modal', 'iframe', 'input', 'preview']);
 
 _defineProperty(_default, "values", {
-  filePath: String
+  filePath: String,
+  uploadUrl: String
 });
