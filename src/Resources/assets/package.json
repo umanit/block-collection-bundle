@@ -5,6 +5,12 @@
   "version": "0.0.1",
   "symfony": {
     "controllers": {
+      "ckeditor": {
+        "main": "dist/ckeditor.js",
+        "webpackMode": "eager",
+        "fetch": "eager",
+        "enabled": true
+      },
       "crop": {
         "main": "dist/crop.js",
         "webpackMode": "eager",
