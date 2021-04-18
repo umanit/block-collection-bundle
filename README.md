@@ -14,6 +14,10 @@ A collection of blocks ready to use with [umanit/block-bundle](https://github.co
 
 * Use [Symfony UX](https://symfony.com/ux)
 
+## Front requirements
+
+* Use [Symfony UX](https://symfony.com/ux)
+
 ## Install
 
 Register the bundle to your `config/bundles.php`
