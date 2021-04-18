@@ -9,6 +9,10 @@ A collection of blocks ready to use with [umanit/block-bundle](https://github.co
     * The assets' installation is not necessary because they're all rewrite in this bundle, you only need to declare
     the bundle and his routing.
 
+## Front requirements
+
+* Use [Symfony UX](https://symfony.com/ux)
+
 ## Install
 
 Register the bundle to your `config/bundles.php`
@@ -23,25 +27,65 @@ return [
 ```
 
 Add one of the Twig's form theme
+
 ```yaml
 # config/packages/twig.yaml
 twig:
     form_themes:
-        # When using SonataAdmin
-        # @todo, not implemented yet, sorry! :-D
-        # When using Sylius
+        # When using Sylius, the only available for the moment
         - '@UmanitBlockCollection/sylius/artgris/field_media.html.twig'
 ```
 
-Add assets in your layout
+Add `@umanit/ux-block-collection-bundle` dev-dependency in your `package.json`
 
-```twig
-  <!-- When using SonataAdmin -->
-  <!-- @todo, not implemented yet, sorry! :-D -->
+```json
+{
+  //...
+  "devDependencies": {
+    // ...
+    "@umanit/ux-block-collection-bundle": "file:vendor/umanit/block-collection-bundle/src/Resources/assets"
+  }
+}
+```
 
-  <!-- When using Sylius -->
-  <link rel="stylesheet" href="{{ asset('bundles/umanitblockcollection/sylius/blocks-initialisator.css') }}" />
-  <script src="{{ asset('bundles/umanitblockcollection/sylius/blocks-initialisator.js') }}" defer="defer"></script>
+Add stimulus controllers to your `assets/controllers.json`
+
+```json
+{
+  "controllers": {
+    // ...
+    "@umanit/ux-block-collection-bundle": {
+      "collection": {
+        "enabled": true,
+        "fetch": "lazy"
+      },
+      "ckeditor": {
+        "enabled": true,
+        "fetch": "lazy"
+      },
+      "crop": {
+        "enabled": true,
+        "fetch": "lazy"
+      },
+      "media": {
+        "enabled": true,
+        "fetch": "lazy"
+      },
+      "modal": {
+        "enabled": true,
+        "fetch": "lazy"
+      }
+    }
+  }
+  // ...
+}
+```
+
+Don't forget to install the JavaScript dependencies as well and compile
+
+```
+yarn install --force
+yarn encore dev
 ```
 
 ## Available blocks
