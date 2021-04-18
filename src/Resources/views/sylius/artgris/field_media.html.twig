@@ -1,3 +1,5 @@
+{% trans_default_domain 'UmanitBlockCollectionBundle' %}
+
 {% block ckeditor_widget %}
   {%- set ckeditor_destroy -%}
     {{ ckeditor_destroy(id) }}
@@ -18,7 +20,7 @@
   {% if enable and not async %}
     {{ block('_ckeditor_javascript') }}
   {% endif %}
-{% endblock %}
+{% endblock ckeditor_widget %}
 
 {% block artgris_media_widget %}
   {% apply spaceless %}
@@ -32,7 +34,7 @@
       {{ block('render_media') }}
     {% endwith %}
   {% endapply %}
-{% endblock %}
+{% endblock artgris_media_widget %}
 
 {% block artgris_media_collection_widget %}
   {% apply spaceless %}
@@ -79,13 +81,13 @@
           <button type="button" class="small ui right icon button"
                   data-action="click->umanit--ux-block-collection-bundle--collection#add"
                   data-umanit--ux-block-collection-bundle--collection-target="addBtn">
-            <i class="right plus circle icon"></i> {{ 'Add'|trans }}
+            <i class="right plus circle icon"></i> {{ 'collection.add'|trans }}
           </button>
         </div>
       </div>
     </div>
   {% endapply %}
-{% endblock %}
+{% endblock artgris_media_collection_widget %}
 
 {% block render_media %}
   {% apply spaceless %}
@@ -169,7 +171,7 @@
                   type="text" class="form-control artgris-media-path"
                   id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
                   {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
-                  placeholder="{{ 'artgris.media.path.placeholder'|trans }}"
+                  placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
                   {{ form.vars.readonly|default ? 'readonly="readonly"' }}
               >
             {% endblock %}
@@ -213,4 +215,4 @@
       } %}
     </div>
   {% endapply %}
-{% endblock %}
+{% endblock render_media %}

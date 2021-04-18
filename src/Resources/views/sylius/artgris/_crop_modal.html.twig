@@ -1,12 +1,14 @@
+{% trans_default_domain 'UmanitBlockCollectionBundle' %}
+
 <div {{ stimulus_controller('umanit/ux-block-collection-bundle/modal') }}
     data-umanit--ux-block-collection-bundle--crop-target="modal" style="display:none;">
   <div class="c-modal-overlay" aria-hidden="true" data-umanit--ux-block-collection-bundle--modal-target="overlay"></div>
   <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
        data-umanit--ux-block-collection-bundle--modal-target="modal">
     <button class="c-modal__btn-close" data-action="click->umanit--ux-block-collection-bundle--modal#close">
-      <span>{{ 'Close'|trans }}</span>
+      <span>{{ 'modal.close'|trans }}</span>
     </button>
-    <div class="header">{{ 'Image crop'|trans }}</div>
+    <div class="header">{{ 'crop.title'|trans }}</div>
     <div class="scrolling content">
       <div class="ui equal width grid">
         <div class="row">
@@ -41,7 +43,8 @@
             <div class="right aligned column">
               <div class="ui small labels">
                 {% for el in ['x', 'y', 'width', 'height'] %}
-                  <div class="ui label">{{ (el ~ ':')|capitalize|trans }}
+                  <div class="ui label">
+                    {{ ('crop.' ~ el)|trans }}
                     <div class="detail js-{{ el }}"
                          data-umanit--ux-block-collection-bundle--crop-target="{{ el }}">
                       0
@@ -49,7 +52,7 @@
                   </div>
                 {% endfor %}
                 {% if crop_options.ratio|default %}
-                  <div class="ui blue label">{{ 'Ratio: '|trans ~ crop_options.ratio|round(2) }}</div>
+                  <div class="ui blue label">{{ 'crop.ratio'|trans({ '%value%': crop_options.ratio|round(2) }) }}</div>
                 {% endif %}
               </div>
             </div>
@@ -62,14 +65,14 @@
       </div>
     </div>
 
-    <button type="button" class="c-modal__btn" aria-label="{{ 'Close'|trans }}"
+    <button type="button" class="c-modal__btn" aria-label="{{ 'modal.close'|trans }}"
             data-action="click->umanit--ux-block-collection-bundle--modal#close">
-      {{ 'Cancel'|trans }}
+      {{ 'modal.close'|trans }}
     </button>
-    <button type="button" class="c-modal__btn" aria-label="{{ 'Close'|trans }}"
+    <button type="button" class="c-modal__btn" aria-label="{{ 'modal.close'|trans }}"
             data-umanit--ux-block-collection-bundle--crop-target="save"
             data-action="click->umanit--ux-block-collection-bundle--crop#apply">
-      {{ 'Apply'|trans }}
+      {{ 'crop.apply'|trans }}
     </button>
   </div>
 </div>
