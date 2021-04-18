@@ -45,10 +45,7 @@
                 {% for el in ['x', 'y', 'width', 'height'] %}
                   <div class="ui label">
                     {{ ('crop.' ~ el)|trans }}
-                    <div class="detail js-{{ el }}"
-                         data-umanit--ux-block-collection-bundle--crop-target="{{ el }}">
-                      0
-                    </div>
+                    <div class="detail" data-umanit--ux-block-collection-bundle--crop-target="{{ el }}">0</div>
                   </div>
                 {% endfor %}
                 {% if crop_options.ratio|default %}

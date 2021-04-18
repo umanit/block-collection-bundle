@@ -7,6 +7,9 @@ export default class extends Controller {
   static values = {
     filePath: String,
     uploadUrl: String,
+    basePath: String,
+    cropableMarkup: String,
+    iconUrl: String,
   };
 
   connect() {
@@ -42,11 +45,11 @@ export default class extends Controller {
       return;
     }
 
-    ajax(preview.dataset.iconUrl, {
+    const basePath = this.basePathValue;
+
+    ajax(this.iconUrlValue, {
       query: { path },
     }).then(({ json: { icon: { html: iconHtml } } }) => {
-      const basePath = preview.dataset.basePath;
-
       if (iconHtml.indexOf('<img') !== -1 && iconHtml.indexOf('.svg') === -1 && path.indexOf(basePath) === 0) {
         const cropableMarkup = preview.dataset.cropableMarkup;
         preview.innerHTML = cropableMarkup.replace('__file_preview__', iconHtml);

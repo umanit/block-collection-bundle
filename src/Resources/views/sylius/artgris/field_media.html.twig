@@ -60,9 +60,9 @@
       initialNbElements: data_init_with_n_elements ? data_init_with_n_elements : 1,
       prototype: prototype ? data_prototype.__toString : '',
     }) }}>
-      <div class="artgris-media-list artgris-media-collection {{ form.vars.id }}-collection"
+      <div class="artgris-media-list artgris-media-collection"
            id="{{ form.vars.id }}" data-umanit--ux-block-collection-bundle--collection-target="list"
-          {{ stimulus_controller('umanit/ux-block-bundle/sortable') }}>
+          {{ stimulus_controller('umanit/ux-block-bundle/sortable', { handle: '.js-panel-sortable-handler' }) }}>
         {% for media in form %}
           {% with {
             form: media,
@@ -91,10 +91,13 @@
 
 {% block render_media %}
   {% apply spaceless %}
+    {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
     <div class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}" {{ stimulus_controller({
       'umanit/ux-block-collection-bundle/media': {
         filePath: form.vars.value,
-        uploadUrl: path('file_manager_upload', { conf:conf }),
+        uploadUrl: path('file_manager_upload', { conf: conf }),
+        basePath: base_path,
+        iconUrl: path('admin_ajax_icon'),
       },
       'umanit/ux-block-collection-bundle/crop': {
         ratio: crop_options.ratio|default,
@@ -110,28 +113,14 @@
               <button type="button" class="mini ui icon button js-panel-sortable-handler">
                 <i class="sort icon"></i>
               </button>
-
-              {# <div class="mini ui compact vertical buttons"> #}
-              {# <button type="button" class="ui icon button" #}
-              {# data-action="click->umanit--ux-block-collection-bundle--collection#up"> #}
-              {# <i class="chevron up icon"></i> #}
-              {# </button> #}
-              {# <button type="button" class="ui icon button" #}
-              {# data-action="click->umanit--ux-block-collection-bundle--collection#down"> #}
-              {# <i class="chevron down icon"></i> #}
-              {# </button> #}
-              {# </div> #}
             </div>
           {% endif %}
 
-          {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
           {% block file_preview %}
             {% set cropable_markup %}
               {% apply spaceless %}
-                <a data-action="click->umanit--ux-block-collection-bundle--crop#do"
-                   href="#" class="ui small image js-crop crop-hover js-artgris-crop-modal-trigger"
-                   data-target="#crop-modal-{{ id }}"
-                >
+                <a data-action="click->umanit--ux-block-collection-bundle--crop#do" href="#"
+                   class="ui small image crop-hover">
                   <span class="ui left corner label">
                     <i class="crop icon"></i>
                   </span>
@@ -140,19 +129,11 @@
               {% endapply %}
             {% endset %}
 
-            <div
-                data-umanit--ux-block-collection-bundle--media-target="preview"
-                class="two wide column js-artgris-img-preview" id="preview-{{ form.vars.id }}"
-                data-id="{{ id }}" data-base-path="{{ base_path }}"
-                data-cropable-markup="{{ cropable_markup|e('html_attr') }}"
-                data-icon-url="{{ path('admin_ajax_icon') }}"
-            >
+            <div data-umanit--ux-block-collection-bundle--media-target="preview" class="two wide column"
+                 id="preview-{{ form.vars.id }}" data-cropable-markup="{{ cropable_markup|e('html_attr') }}">
               {% set preview = fileIcon(form.vars.data).html %}
               {% if form.vars.allow_crop and '<img' in preview and '.svg' not in preview and form.vars.data[:base_path|length] == base_path %}
-                <a
-                    href="#" class="ui small image js-crop crop-hover js-artgris-crop-modal-trigger"
-                    data-target="#crop-modal-{{ id }}"
-                >
+                <a href="#" class="ui small image crop-hover">
                   <span class="artgris-media-crop-wrapper">
                     <i class="crop icon"></i>
                   </span>
@@ -193,7 +174,6 @@
           {% if collection %}
             <div class="one wide column">
               <button type="button" class="small ui red icon button"
-                      data-item=""
                       data-action="click->umanit--ux-block-collection-bundle--collection#remove">
                 <i class="times icon"></i>
               </button>

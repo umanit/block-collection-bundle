@@ -83,13 +83,13 @@ var _default = /*#__PURE__*/function (_Controller) {
         return;
       }
 
-      (0, _tools.ajax)(preview.dataset.iconUrl, {
+      var basePath = this.basePathValue;
+      (0, _tools.ajax)(this.iconUrlValue, {
         query: {
           path: path
         }
       }).then(function (_ref) {
         var iconHtml = _ref.json.icon.html;
-        var basePath = preview.dataset.basePath;
 
         if (iconHtml.indexOf('<img') !== -1 && iconHtml.indexOf('.svg') === -1 && path.indexOf(basePath) === 0) {
           var cropableMarkup = preview.dataset.cropableMarkup;
@@ -164,5 +164,8 @@ _defineProperty(_default, "targets", ['modal', 'iframe', 'input', 'preview']);
 
 _defineProperty(_default, "values", {
   filePath: String,
-  uploadUrl: String
+  uploadUrl: String,
+  basePath: String,
+  cropableMarkup: String,
+  iconUrl: String
 });
