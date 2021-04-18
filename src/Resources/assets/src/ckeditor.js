@@ -6,6 +6,18 @@ export default class extends Controller {
     config: Object,
   };
 
+  initialize() {
+    const nextSibling = this.element.nextElementSibling;
+
+    if (!nextSibling || !nextSibling.classList.contains('cke')) {
+      const destroy = new Function(this.element.dataset.ckeditorDestroy);
+      const instanciate = new Function(this.element.dataset.ckeditorInstanciate);
+
+      destroy();
+      instanciate();
+    }
+  }
+
   destroy() {
     if ('undefined' !== typeof CKEDITOR) {
       this.configValue = CKEDITOR.instances[this.element.id].config;
