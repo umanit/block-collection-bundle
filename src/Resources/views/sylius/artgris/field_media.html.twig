@@ -1,3 +1,5 @@
+{% trans_default_domain 'UmanitBlockCollectionBundle' %}
+
 {% block ckeditor_widget %}
   {%- set ckeditor_destroy -%}
     {{ ckeditor_destroy(id) }}
@@ -18,96 +20,107 @@
   {% if enable and not async %}
     {{ block('_ckeditor_javascript') }}
   {% endif %}
-{% endblock %}
+{% endblock ckeditor_widget %}
 
 {% block artgris_media_widget %}
   {% apply spaceless %}
-    {% with {'form': form, 'collection': false, 'id': form.vars.id, 'conf': conf } only %}
+    {% with {
+      form: form,
+      collection: false,
+      id: form.vars.id,
+      conf: conf,
+      tree: tree,
+      } only %}
       {{ block('render_media') }}
     {% endwith %}
   {% endapply %}
-
-  {% include '@UmanitBlockCollection/sylius/artgris/_modal.html.twig' %}
-  {% include '@UmanitBlockCollection/sylius/artgris/_crop_modal.html.twig' with {
-    crop_options: form.vars.crop_options
-  } %}
-{% endblock %}
+{% endblock artgris_media_widget %}
 
 {% block artgris_media_collection_widget %}
   {% apply spaceless %}
     {% if prototype is defined %}
       {% set data_prototype %}
-        {% with {'form': prototype, 'collection': true, 'id': form.vars.id, 'conf': conf } only %}
+        {% with {
+          form: prototype,
+          collection: true,
+          id: form.vars.id,
+          conf: conf,
+          tree: tree,
+          } only %}
           {{ block('render_media') }}
         {% endwith %}
       {% endset %}
-      {% set attr = attr|merge({'data-prototype': data_prototype}) %}
-      {% set attr = attr|merge({'data-prototype-name': prototype.vars.name}) %}
     {% endif %}
-    {% set attr = attr|merge({'data-allow-add': allow_add ? 1 : 0}) %}
-    {% set attr = attr|merge({'data-max': data_max ? data_max : 100}) %}
-    {% set attr = attr|merge({'data-min': data_min ? data_min : 0}) %}
-    {% set attr = attr|merge({'data-init-with-n-elements': data_init_with_n_elements ? data_init_with_n_elements : 1}) %}
-    {% set attr = attr|merge({'data-add-at-the-end': data_add_at_the_end ? data_add_at_the_end : false}) %}
-    {% set attr = attr|merge({'data-allow-remove': allow_delete ? 1 : 0 }) %}
-    {% set attr = attr|merge({'data-name-prefix': full_name}) %}
 
-    <div class="js-artgris-collection-holder">
-      <div
-          class="artgris-media-list artgris-media-collection {{ form.vars.id }}-collection"
-          id="{{ form.vars.id }}" {% for k, v in attr %} {{ k }}="{{ v|e }}"{% endfor %}
-      >
-      {% for media in form %}
-        {% with {'form': media, 'collection': true, 'id': form.vars.id, 'conf': conf } only %}
-          {{ block('render_media') }}
-        {% endwith %}
-      {% endfor %}
-    </div>
+    <div {{ stimulus_controller('umanit/ux-block-collection-bundle/collection', {
+      allowAdd: allow_add ? 1 : 0,
+      allowDelete: allow_delete ? 1 : 0,
+      min: data_min ? data_min : 0,
+      max: data_max ? data_max : 100,
+      initialNbElements: data_init_with_n_elements ? data_init_with_n_elements : 1,
+      prototype: prototype ? data_prototype.__toString : '',
+    }) }}>
+      <div class="artgris-media-list artgris-media-collection"
+           id="{{ form.vars.id }}" data-umanit--ux-block-collection-bundle--collection-target="list"
+          {{ stimulus_controller('umanit/ux-block-bundle/sortable', { handle: '.js-panel-sortable-handler' }) }}>
+        {% for media in form %}
+          {% with {
+            form: media,
+            collection: true,
+            id: form.vars.id,
+            conf: conf,
+            tree: tree,
+            } only %}
+            {{ block('render_media') }}
+          {% endwith %}
+        {% endfor %}
+      </div>
 
-    <div class="ui grid">
-      <div class="column">
-        <button
-            type="button" class="small ui right icon button js-artgris-images-add {{ form.vars.id }}-collection-add {{ form.vars.id }}-collection-action"
-            data-collection="{{ form.vars.id }}"
-        >
-          <i class="right plus circle icon"></i> {{ 'Add'|trans }}
-        </button>
+      <div class="ui grid">
+        <div class="column">
+          <button type="button" class="small ui right icon button"
+                  data-action="click->umanit--ux-block-collection-bundle--collection#add"
+                  data-umanit--ux-block-collection-bundle--collection-target="addBtn">
+            <i class="right plus circle icon"></i> {{ 'collection.add'|trans }}
+          </button>
+        </div>
       </div>
     </div>
-
-    {% include '@UmanitBlockCollection/sylius/artgris/_modal.html.twig' %}
-    {% include '@UmanitBlockCollection/sylius/artgris/_crop_modal.html.twig' with {
-      crop_options: form.vars.prototype.vars.crop_options
-    } %}
   {% endapply %}
-{% endblock %}
+{% endblock artgris_media_collection_widget %}
 
 {% block render_media %}
   {% apply spaceless %}
-    <div class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}">
+    {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
+    <div class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}" {{ stimulus_controller({
+      'umanit/ux-block-collection-bundle/media': {
+        filePath: form.vars.value,
+        uploadUrl: path('file_manager_upload', { conf: conf }),
+        basePath: base_path,
+        iconUrl: path('admin_ajax_icon'),
+      },
+      'umanit/ux-block-collection-bundle/crop': {
+        ratio: crop_options.ratio|default,
+        url: path('admin_ajax_crop'),
+        conf: conf,
+      },
+    }) }} data-action="umanit--ux-block-collection-bundle--crop:crop->umanit--ux-block-collection-bundle--media#updateFromCrop"
+         data-umanit--ux-block-collection-bundle--collection-target="item">
       <div class="ui grid middle aligned">
         <div class="column row">
           {% if collection %}
             <div class="two wide column">
-              <div class="mini ui compact vertical buttons">
-                <button type="button" class="ui icon button collection-up">
-                  <i class="chevron up icon"></i>
-                </button>
-                <button type="button" class="ui icon button collection-down">
-                  <i class="chevron down icon"></i>
-                </button>
-              </div>
+              <button type="button" class="mini ui icon button js-panel-sortable-handler">
+                <i class="sort icon"></i>
+              </button>
             </div>
           {% endif %}
 
-          {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
           {% block file_preview %}
             {% set cropable_markup %}
               {% apply spaceless %}
-                <a
-                    href="#" class="ui small image js-crop crop-hover js-artgris-crop-modal-trigger"
-                    data-target="#crop-modal-{{ id }}"
-                >
+                <a data-action="click->umanit--ux-block-collection-bundle--crop#do" href="#"
+                   class="ui small image crop-hover">
                   <span class="ui left corner label">
                     <i class="crop icon"></i>
                   </span>
@@ -116,20 +129,11 @@
               {% endapply %}
             {% endset %}
 
-            <div
-                class="two wide column js-artgris-img-preview" id="preview-{{ form.vars.id }}"
-                data-id="{{ id }}" data-conf="{{ conf }}" data-base-path="{{ base_path }}"
-                data-cropable-markup="{{ cropable_markup|e('html_attr') }}"
-                data-icon-url="{{ path('admin_ajax_icon') }}" data-crop-url="{{ path('admin_ajax_crop') }}"
-            >
+            <div data-umanit--ux-block-collection-bundle--media-target="preview" class="two wide column"
+                 id="preview-{{ form.vars.id }}" data-cropable-markup="{{ cropable_markup|e('html_attr') }}">
               {% set preview = fileIcon(form.vars.data).html %}
               {% if form.vars.allow_crop and '<img' in preview and '.svg' not in preview and form.vars.data[:base_path|length] == base_path %}
-                {# {{ cropable_markup|replace({ __file_preview__: preview })|raw }}#}
-
-                <a
-                    href="#" class="ui small image js-crop crop-hover js-artgris-crop-modal-trigger"
-                    data-target="#crop-modal-{{ id }}"
-                >
+                <a href="#" class="ui small image crop-hover">
                   <span class="artgris-media-crop-wrapper">
                     <i class="crop icon"></i>
                   </span>
@@ -141,14 +145,14 @@
             </div>
           {% endblock %}
 
-          {#label + input#}
+          {# label + input #}
           <div class="{% if collection %}six{% else %}eight{% endif %} wide column">
             {% block fields %}
               <input
                   type="text" class="form-control artgris-media-path"
                   id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
                   {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
-                  placeholder="{{ 'artgris.media.path.placeholder'|trans }}"
+                  placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
                   {{ form.vars.readonly|default ? 'readonly="readonly"' }}
               >
             {% endblock %}
@@ -161,7 +165,7 @@
                   id: id,
                   form: form,
                   conf: conf,
-                  collection: collection
+                  collection: collection,
                 } only %}
               {% endblock %}
             </div>
@@ -169,7 +173,8 @@
 
           {% if collection %}
             <div class="one wide column">
-              <button type="button" class="small ui red icon button js-remove-collection collection-remove collection-action">
+              <button type="button" class="small ui red icon button"
+                      data-action="click->umanit--ux-block-collection-bundle--collection#remove">
                 <i class="times icon"></i>
               </button>
             </div>
@@ -184,6 +189,10 @@
           </div>
         {% endif %}
       </div>
+      {% include '@UmanitBlockCollection/sylius/artgris/_modal.html.twig' %}
+      {% include '@UmanitBlockCollection/sylius/artgris/_crop_modal.html.twig' with {
+        crop_options: form.vars.crop_options
+      } %}
     </div>
   {% endapply %}
-{% endblock %}
+{% endblock render_media %}

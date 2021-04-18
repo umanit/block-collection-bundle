@@ -1,0 +1,14 @@
+collection:
+    add: 'Ajouter'
+modal:
+    close: 'Fermer'
+file_manager:
+    title: 'Gestionnaire de fichiers'
+crop:
+    title: 'Crop d''image'
+    ratio: 'Ratio : %value%'
+    apply: 'Appliquer'
+    x: 'X :'
+    y: 'Y :'
+    width: 'Largeur :'
+    height: 'Hauteur :'

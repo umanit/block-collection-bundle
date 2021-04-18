@@ -28,12 +28,12 @@ final class FaqQuestionType extends AbstractType
                 'required' => false,
             ])
             ->add('imagePath', MediaType::class, [
-                'conf'     => 'default',
+                'conf' => 'default',
             ])
             ->add('imageAlt', TextType::class, [
                 'required' => false,
             ])
-            ->add('position', HiddenType::class, ['attr' => ['data-target' => 'position']])
+            ->add('position', HiddenType::class)
         ;
     }
 

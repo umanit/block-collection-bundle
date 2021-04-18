@@ -13,8 +13,8 @@ class CKEditorTypeExtension extends AbstractTypeExtension
 {
     public function buildView(FormView $view, FormInterface $form, array $options): void
     {
-        $classes = $view->vars['attr']['class'] ?? '';
-        $view->vars['attr']['class'] = trim($classes.' js-ckeditor');
+        $view->vars['attr']['data-controller'] = 'umanit--ux-block-collection-bundle--ckeditor';
+        $view->vars['attr']['data-action'] = 'umanit--ux-block-bundle--sortable:start@window->umanit--ux-block-collection-bundle--ckeditor#destroy umanit--ux-block-bundle--sortable:end@window->umanit--ux-block-collection-bundle--ckeditor#restore';
     }
 
     public static function getExtendedTypes(): iterable

@@ -1,22 +1,19 @@
 <div class="ui icon buttons">
   {% if not form.vars.required %}
-    <button class="ui icon button js-artgris-erase" type="button">
+    <button class="ui icon button" type="button" data-action="click->umanit--ux-block-collection-bundle--media#erase">
       <i class="eraser icon red"></i>
     </button>
   {% endif %}
 
-  <span class="ui icon button fileinput-button">
+  <label for="umanit--ux-block-collection-bundle--media-file-{{ id }}" class="ui icon button">
     <i class="plus icon green"></i>
-    <input
-        class="fileupload {{ (not collection ?? false) ? 'alone' }}" type="file"
-        data-url="{{ path('file_manager_upload', { conf:conf }) }}" name="files[]" multiple=""
-    >
-  </span>
+    <input id="umanit--ux-block-collection-bundle--media-file-{{ id }}" type="file"
+           data-action="input->umanit--ux-block-collection-bundle--media#upload" style="display: none;" />
+  </label>
 
   {% if form.vars.display_file_manager %}
-    <button
-        type="button" class="ui icon button js-artgris-modal-trigger"
-        data-target="#artgris-filemanager-modal-{{ id }}"
+    <button data-action="click->umanit--ux-block-collection-bundle--modal#open click->umanit--ux-block-collection-bundle--media#fileManager"
+            type="button" class="ui icon button"
     >
       <i class="folder open icon"></i>
     </button>
