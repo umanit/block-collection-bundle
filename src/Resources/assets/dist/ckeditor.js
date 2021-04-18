@@ -46,14 +46,10 @@ var _default = /*#__PURE__*/function (_Controller) {
   _createClass(_default, [{
     key: "initialize",
     value: function initialize() {
-      var nextSibling = this.element.nextElementSibling;
-
-      if (!nextSibling || !nextSibling.classList.contains('cke')) {
-        var destroy = new Function(this.element.dataset.ckeditorDestroy);
-        var instanciate = new Function(this.element.dataset.ckeditorInstanciate);
-        destroy();
-        instanciate();
-      }
+      var destroy = new Function(this.element.dataset.ckeditorDestroy);
+      var instanciate = new Function(this.element.dataset.ckeditorInstanciate);
+      destroy();
+      instanciate();
     }
   }, {
     key: "destroy",

@@ -7,15 +7,11 @@ export default class extends Controller {
   };
 
   initialize() {
-    const nextSibling = this.element.nextElementSibling;
+    const destroy = new Function(this.element.dataset.ckeditorDestroy);
+    const instanciate = new Function(this.element.dataset.ckeditorInstanciate);
 
-    if (!nextSibling || !nextSibling.classList.contains('cke')) {
-      const destroy = new Function(this.element.dataset.ckeditorDestroy);
-      const instanciate = new Function(this.element.dataset.ckeditorInstanciate);
-
-      destroy();
-      instanciate();
-    }
+    destroy();
+    instanciate();
   }
 
   destroy() {
