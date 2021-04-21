@@ -7,32 +7,27 @@
     "controllers": {
       "collection": {
         "main": "dist/collection.js",
-        "webpackMode": "eager",
-        "fetch": "eager",
+        "fetch": "lazy",
         "enabled": true
       },
       "ckeditor": {
         "main": "dist/ckeditor.js",
-        "webpackMode": "eager",
-        "fetch": "eager",
+        "fetch": "lazy",
         "enabled": true
       },
       "crop": {
         "main": "dist/crop.js",
-        "webpackMode": "eager",
-        "fetch": "eager",
+        "fetch": "lazy",
         "enabled": true
       },
       "media": {
         "main": "dist/media.js",
-        "webpackMode": "eager",
-        "fetch": "eager",
+        "fetch": "lazy",
         "enabled": true
       },
       "modal": {
         "main": "dist/modal.js",
-        "webpackMode": "eager",
-        "fetch": "eager",
+        "fetch": "lazy",
         "enabled": true
       }
     }
