@@ -41,14 +41,14 @@ twig:
         - '@UmanitBlockCollection/sylius/artgris/field_media.html.twig'
 ```
 
-Add `@umanit/ux-block-collection-bundle` dev-dependency in your `package.json`
+Add `@umanit/block-collection-bundle` dev-dependency in your `package.json`
 
 ```json
 {
   //...
   "devDependencies": {
     // ...
-    "@umanit/ux-block-collection-bundle": "file:vendor/umanit/block-collection-bundle/Resources/assets"
+    "@umanit/block-collection-bundle": "file:vendor/umanit/block-collection-bundle/Resources/assets"
   }
 }
 ```
@@ -59,7 +59,7 @@ Add stimulus controllers to your `assets/controllers.json`
 {
   "controllers": {
     // ...
-    "@umanit/ux-block-collection-bundle": {
+    "@umanit/block-collection-bundle": {
       "collection": {
         "enabled": true,
         "fetch": "lazy"

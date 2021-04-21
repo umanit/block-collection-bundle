@@ -52,7 +52,7 @@
       {% endset %}
     {% endif %}
 
-    <div {{ stimulus_controller('umanit/ux-block-collection-bundle/collection', {
+    <div {{ stimulus_controller('umanit/block-collection-bundle/collection', {
       allowAdd: allow_add ? 1 : 0,
       allowDelete: allow_delete ? 1 : 0,
       min: data_min ? data_min : 0,
@@ -61,8 +61,8 @@
       prototype: prototype ? data_prototype.__toString : '',
     }) }}>
       <div class="artgris-media-list artgris-media-collection"
-           id="{{ form.vars.id }}" data-umanit--ux-block-collection-bundle--collection-target="list"
-          {{ stimulus_controller('umanit/ux-block-bundle/sortable', { handle: '.js-panel-sortable-handler' }) }}>
+           id="{{ form.vars.id }}" data-umanit--block-collection-bundle--collection-target="list"
+          {{ stimulus_controller('umanit/block-bundle/sortable', { handle: '.js-panel-sortable-handler' }) }}>
         {% for media in form %}
           {% with {
             form: media,
@@ -79,8 +79,8 @@
       <div class="ui grid">
         <div class="column">
           <button type="button" class="small ui right icon button"
-                  data-action="click->umanit--ux-block-collection-bundle--collection#add"
-                  data-umanit--ux-block-collection-bundle--collection-target="addBtn">
+                  data-action="click->umanit--block-collection-bundle--collection#add"
+                  data-umanit--block-collection-bundle--collection-target="addBtn">
             <i class="right plus circle icon"></i> {{ 'collection.add'|trans }}
           </button>
         </div>
@@ -93,19 +93,19 @@
   {% apply spaceless %}
     {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
     <div class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}" {{ stimulus_controller({
-      'umanit/ux-block-collection-bundle/media': {
+      'umanit/block-collection-bundle/media': {
         filePath: form.vars.value,
         uploadUrl: path('file_manager_upload', { conf: conf }),
         basePath: base_path,
         iconUrl: path('admin_ajax_icon'),
       },
-      'umanit/ux-block-collection-bundle/crop': {
+      'umanit/block-collection-bundle/crop': {
         ratio: crop_options.ratio|default,
         url: path('admin_ajax_crop'),
         conf: conf,
       },
-    }) }} data-action="umanit--ux-block-collection-bundle--crop:crop->umanit--ux-block-collection-bundle--media#updateFromCrop"
-         data-umanit--ux-block-collection-bundle--collection-target="item">
+    }) }} data-action="umanit--block-collection-bundle--crop:crop->umanit--block-collection-bundle--media#updateFromCrop"
+         data-umanit--block-collection-bundle--collection-target="item">
       <div class="ui grid middle aligned">
         <div class="column row">
           {% if collection %}
@@ -119,7 +119,7 @@
           {% block file_preview %}
             {% set cropable_markup %}
               {% apply spaceless %}
-                <a data-action="click->umanit--ux-block-collection-bundle--crop#do" href="#"
+                <a data-action="click->umanit--block-collection-bundle--crop#do" href="#"
                    class="ui small image crop-hover">
                   <span class="ui left corner label">
                     <i class="crop icon"></i>
@@ -129,7 +129,7 @@
               {% endapply %}
             {% endset %}
 
-            <div data-umanit--ux-block-collection-bundle--media-target="preview" class="two wide column"
+            <div data-umanit--block-collection-bundle--media-target="preview" class="two wide column"
                  id="preview-{{ form.vars.id }}" data-cropable-markup="{{ cropable_markup|e('html_attr') }}">
               {% set preview = fileIcon(form.vars.data).html %}
               {% if form.vars.allow_crop and '<img' in preview and '.svg' not in preview and form.vars.data[:base_path|length] == base_path %}
@@ -148,8 +148,8 @@
           {# label + input #}
           <div class="{% if collection %}six{% else %}eight{% endif %} wide column">
             {% block fields %}
-              <input data-action="input->umanit--ux-block-collection-bundle--media#updatePreview"
-                     data-umanit--ux-block-collection-bundle--media-target="input" type="text"
+              <input data-action="input->umanit--block-collection-bundle--media#updatePreview"
+                     data-umanit--block-collection-bundle--media-target="input" type="text"
                      class="form-control artgris-media-path" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
                      {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
                      placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
@@ -173,7 +173,7 @@
           {% if collection %}
             <div class="one wide column">
               <button type="button" class="small ui red icon button"
-                      data-action="click->umanit--ux-block-collection-bundle--collection#remove">
+                      data-action="click->umanit--block-collection-bundle--collection#remove">
                 <i class="times icon"></i>
               </button>
             </div>

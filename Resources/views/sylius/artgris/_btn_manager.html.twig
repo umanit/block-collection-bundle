@@ -1,18 +1,18 @@
 <div class="ui icon buttons">
   {% if not form.vars.required %}
-    <button class="ui icon button" type="button" data-action="click->umanit--ux-block-collection-bundle--media#erase">
+    <button class="ui icon button" type="button" data-action="click->umanit--block-collection-bundle--media#erase">
       <i class="eraser icon red"></i>
     </button>
   {% endif %}
 
-  <label for="umanit--ux-block-collection-bundle--media-file-{{ id }}" class="ui icon button">
+  <label for="umanit--block-collection-bundle--media-file-{{ id }}" class="ui icon button">
     <i class="plus icon green"></i>
-    <input id="umanit--ux-block-collection-bundle--media-file-{{ id }}" type="file"
-           data-action="input->umanit--ux-block-collection-bundle--media#upload" style="display: none;" />
+    <input id="umanit--block-collection-bundle--media-file-{{ id }}" type="file"
+           data-action="input->umanit--block-collection-bundle--media#upload" style="display: none;" />
   </label>
 
   {% if form.vars.display_file_manager %}
-    <button data-action="click->umanit--ux-block-collection-bundle--modal#open click->umanit--ux-block-collection-bundle--media#fileManager"
+    <button data-action="click->umanit--block-collection-bundle--modal#open click->umanit--block-collection-bundle--media#fileManager"
             type="button" class="ui icon button"
     >
       <i class="folder open icon"></i>

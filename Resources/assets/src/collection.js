@@ -43,7 +43,7 @@ export default class extends Controller {
       e.preventDefault();
     }
 
-    const item = e.currentTarget.closest('[data-umanit--ux-block-collection-bundle--collection-target="item"]');
+    const item = e.currentTarget.closest('[data-umanit--block-collection-bundle--collection-target="item"]');
 
     if (null !== item) {
       item.remove();

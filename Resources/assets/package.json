@@ -1,5 +1,5 @@
 {
-  "name": "@umanit/ux-block-collection-bundle",
+  "name": "@umanit/block-collection-bundle",
   "description": "Package for umanit/block-collection-bundle",
   "license": "MIT",
   "version": "0.0.1",
@@ -36,7 +36,7 @@
     "build": "babel src -d dist --copy-files"
   },
   "peerDependencies": {
-    "@umanit/ux-block-bundle": "0.0.1",
+    "@umanit/block-bundle": "0.0.1",
     "stimulus": "^2.0.0"
   },
   "dependencies": {

@@ -1,21 +1,21 @@
 {% trans_default_domain 'UmanitBlockCollectionBundle' %}
 
-<div {{ stimulus_controller('umanit/ux-block-collection-bundle/modal') }}
-    data-umanit--ux-block-collection-bundle--media-target="modal" style="display:none;">
-  <div class="c-modal-overlay" aria-hidden="true" data-umanit--ux-block-collection-bundle--modal-target="overlay"></div>
+<div {{ stimulus_controller('umanit/block-collection-bundle/modal') }}
+    data-umanit--block-collection-bundle--media-target="modal" style="display:none;">
+  <div class="c-modal-overlay" aria-hidden="true" data-umanit--block-collection-bundle--modal-target="overlay"></div>
   <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
-       data-umanit--ux-block-collection-bundle--modal-target="modal">
-    <button class="c-modal__btn-close" data-action="click->umanit--ux-block-collection-bundle--modal#close">
+       data-umanit--block-collection-bundle--modal-target="modal">
+    <button class="c-modal__btn-close" data-action="click->umanit--block-collection-bundle--modal#close">
       <span>{{ 'modal.close'|trans }}</span>
     </button>
     <h5>{{ 'file_manager.title'|trans }}</h5>
 
-    <iframe data-umanit--ux-block-collection-bundle--media-target="iframe"
+    <iframe data-umanit--block-collection-bundle--media-target="iframe"
             data-src="{{ path('file_manager', { module: 1, conf: conf, tree: tree }) }}"
             width="100%" height="500" frameborder="0"></iframe>
 
     <button type="button" class="c-modal__btn" aria-label="{{ 'modal.close'|trans }}"
-            data-action="click->umanit--ux-block-collection-bundle--modal#close">
+            data-action="click->umanit--block-collection-bundle--modal#close">
       {{ 'modal.close'|trans }}
     </button>
   </div>

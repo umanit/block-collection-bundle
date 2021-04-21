@@ -72,7 +72,7 @@ var _default = /*#__PURE__*/function (_Controller) {
         e.preventDefault();
       }
 
-      var item = e.currentTarget.closest('[data-umanit--ux-block-collection-bundle--collection-target="item"]');
+      var item = e.currentTarget.closest('[data-umanit--block-collection-bundle--collection-target="item"]');
 
       if (null !== item) {
         item.remove();
