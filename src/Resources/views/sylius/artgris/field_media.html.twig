@@ -148,13 +148,12 @@
           {# label + input #}
           <div class="{% if collection %}six{% else %}eight{% endif %} wide column">
             {% block fields %}
-              <input
-                  type="text" class="form-control artgris-media-path"
-                  id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
-                  {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
-                  placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
-                  {{ form.vars.readonly|default ? 'readonly="readonly"' }}
-              >
+              <input data-action="input->umanit--ux-block-collection-bundle--media#updatePreview"
+                     data-umanit--ux-block-collection-bundle--media-target="input" type="text"
+                     class="form-control artgris-media-path" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
+                     {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
+                     placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
+                  {{ form.vars.readonly|default ? 'readonly="readonly"' }} />
             {% endblock %}
           </div>
 
