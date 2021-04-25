@@ -4,11 +4,6 @@ services:
         autoconfigure: false
         public: false
 
-    umanit_block_collection.form.type_extension.ckeditor:
-        class: Umanit\BlockCollectionBundle\Form\Extension\CKEditorTypeExtension
-        arguments: ['@fos_ck_editor.configuration', '@fos_ck_editor.renderer']
-        tags: ['form.type_extension']
-
     umanit_block_collection.block_manager.faq:
         class: Umanit\BlockCollectionBundle\BlockManager\FaqBlockManager
         arguments: ['@twig']

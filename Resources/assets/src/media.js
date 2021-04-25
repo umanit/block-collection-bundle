@@ -7,7 +7,6 @@ export default class extends Controller {
     filePath: String,
     uploadUrl: String,
     basePath: String,
-    cropableMarkup: String,
     iconUrl: String,
     fileManagerModalId: String,
     cropperModalId: String,

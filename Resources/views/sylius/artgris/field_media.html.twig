@@ -15,7 +15,9 @@
 
   <textarea {{ block('widget_attributes') }}
       data-ckeditor-destroy="{{ ckeditor_destroy|e('html_attr') }}"
-      data-ckeditor-instanciate="{{ ckeditor_instanciate|e('html_attr') }}">{{ value }}</textarea>
+      data-ckeditor-instanciate="{{ ckeditor_instanciate|e('html_attr') }}"
+      data-controller="umanit--block-collection-bundle--ckeditor"
+      data-action="umanit--block-bundle--sortable:start@window->umanit--block-collection-bundle--ckeditor#destroy umanit--block-bundle--sortable:end@window->umanit--block-collection-bundle--ckeditor#restore">{{ value }}</textarea>
 
   {% if enable and not async %}
     {{ block('_ckeditor_javascript') }}
@@ -116,7 +118,7 @@
             {% set cropable_markup %}
               {% apply spaceless %}
                 <a href="#" class="ui small image crop-hover"
-                        data-action="click->umanit--block-collection-bundle--media#callCropper">
+                   data-action="click->umanit--block-collection-bundle--media#callCropper">
                   <span class="ui left corner label">
                     <i class="crop icon"></i>
                   </span>
@@ -129,8 +131,9 @@
                  id="preview-{{ id }}" data-cropable-markup="{{ cropable_markup|e('html_attr') }}">
               {% set preview = fileIcon(form.vars.data).html %}
               {% if form.vars.allow_crop and '<img' in preview and '.svg' not in preview and form.vars.data[:base_path|length] == base_path %}
-                <a href="#" class="ui small image crop-hover">
-                  <span class="artgris-media-crop-wrapper">
+                <a href="#" class="ui small image crop-hover"
+                   data-action="click->umanit--block-collection-bundle--media#callCropper">
+                  <span class="ui left corner label">
                     <i class="crop icon"></i>
                   </span>
                   {{ preview|raw }}
@@ -139,7 +142,7 @@
                 {{ preview|raw }}
               {% endif %}
             </div>
-          {% endblock %}
+          {% endblock file_preview %}
 
           {# label + input #}
           <div class="{% if collection %}six{% else %}eight{% endif %} wide column">
@@ -150,7 +153,7 @@
                      {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
                      placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
                   {{ form.vars.readonly|default ? 'readonly="readonly"' }} />
-            {% endblock %}
+            {% endblock fields %}
           </div>
 
           <div class="{% if collection %}four{% else %}six{% endif %} wide column">
@@ -162,7 +165,7 @@
                   conf: conf,
                   collection: collection,
                 } only %}
-              {% endblock %}
+              {% endblock media_buttons_collection %}
             </div>
           </div>
 
