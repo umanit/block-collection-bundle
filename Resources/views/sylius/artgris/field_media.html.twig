@@ -92,19 +92,22 @@
 {% block render_media %}
   {% apply spaceless %}
     {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
-    <div class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}" {{ stimulus_controller({
-      'umanit/block-collection-bundle/media': {
-        filePath: form.vars.value,
-        uploadUrl: path('file_manager_upload', { conf: conf }),
-        basePath: base_path,
-        iconUrl: path('admin_ajax_icon'),
-      },
-      'umanit/block-collection-bundle/crop': {
-        ratio: crop_options.ratio|default,
-        url: path('admin_ajax_crop'),
-        conf: conf,
-      },
-    }) }} data-action="umanit--block-collection-bundle--crop:crop->umanit--block-collection-bundle--media#updateFromCrop"
+    <div id="artgris-media-{{ id }}" class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}"
+        {{ stimulus_controller({
+          'umanit/block-collection-bundle/media': {
+            filePath: form.vars.value,
+            uploadUrl: path('file_manager_upload', { conf: conf }),
+            basePath: base_path,
+            iconUrl: path('admin_ajax_icon'),
+            modalId: 'manager-modal-' ~ id,
+          },
+          'umanit/block-collection-bundle/crop': {
+            ratio: crop_options.ratio|default,
+            url: path('admin_ajax_crop'),
+            conf: conf,
+          },
+        }) }}
+         data-action="umanit--block-collection-bundle--crop:crop->umanit--block-collection-bundle--media#updateFromCrop"
          data-umanit--block-collection-bundle--collection-target="item">
       <div class="ui grid middle aligned">
         <div class="column row">
@@ -130,7 +133,7 @@
             {% endset %}
 
             <div data-umanit--block-collection-bundle--media-target="preview" class="two wide column"
-                 id="preview-{{ form.vars.id }}" data-cropable-markup="{{ cropable_markup|e('html_attr') }}">
+                 id="preview-{{ id }}" data-cropable-markup="{{ cropable_markup|e('html_attr') }}">
               {% set preview = fileIcon(form.vars.data).html %}
               {% if form.vars.allow_crop and '<img' in preview and '.svg' not in preview and form.vars.data[:base_path|length] == base_path %}
                 <a href="#" class="ui small image crop-hover">
@@ -150,7 +153,7 @@
             {% block fields %}
               <input data-action="input->umanit--block-collection-bundle--media#updatePreview"
                      data-umanit--block-collection-bundle--media-target="input" type="text"
-                     class="form-control artgris-media-path" id="{{ form.vars.id }}" name="{{ form.vars.full_name }}"
+                     class="form-control artgris-media-path" id="{{ id }}" name="{{ form.vars.full_name }}"
                      {% if form.vars.required %}required="required"{% endif %} value="{{ form.vars.value }}"
                      placeholder="{{ 'artgris.media.path.placeholder'|trans({}, 'messages') }}"
                   {{ form.vars.readonly|default ? 'readonly="readonly"' }} />

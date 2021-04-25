@@ -1,7 +1,8 @@
 {% trans_default_domain 'UmanitBlockCollectionBundle' %}
 
 <div {{ stimulus_controller('umanit/block-collection-bundle/modal') }}
-    data-umanit--block-collection-bundle--media-target="modal" style="display:none;">
+    id="manager-modal-{{ form.vars.id }}" style="display:none;"
+    data-action="umanit--block-collection-bundle--file-manager:select-media->umanit--block-collection-bundle--modal#close">
   <div class="c-modal-overlay" aria-hidden="true" data-umanit--block-collection-bundle--modal-target="overlay"></div>
   <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
        data-umanit--block-collection-bundle--modal-target="modal">
@@ -10,9 +11,12 @@
     </button>
     <h5>{{ 'file_manager.title'|trans }}</h5>
 
-    <iframe data-umanit--block-collection-bundle--media-target="iframe"
-            data-src="{{ path('file_manager', { module: 1, conf: conf, tree: tree }) }}"
-            width="100%" height="500" frameborder="0"></iframe>
+    <iframe width="100%" height="500" frameborder="0"
+        {{ stimulus_controller('umanit/block-collection-bundle/file-manager', {
+          src: path('file_manager', { module: 1, conf: conf, tree: tree }),
+          mediaControllerId: 'artgris-media-' ~ id,
+        }) }}>
+    </iframe>
 
     <button type="button" class="c-modal__btn" aria-label="{{ 'modal.close'|trans }}"
             data-action="click->umanit--block-collection-bundle--modal#close">

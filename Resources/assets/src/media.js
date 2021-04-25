@@ -10,29 +10,13 @@ export default class extends Controller {
     basePath: String,
     cropableMarkup: String,
     iconUrl: String,
+    modalId: String,
   };
 
-  connect() {
-    this.iframeTarget.addEventListener('load', () => {
-      this.iframeTarget.contentWindow.document.body.querySelectorAll('.select').forEach(row => {
-        row.addEventListener('click', () => {
-          this.filePathValue = row.dataset.path;
-
-          this.closeModal();
-          this.updatePreview();
-        });
-      });
-    });
-  }
-
-  fileManager(e) {
+  callFileManager(e) {
     e.preventDefault();
 
     this.openModal();
-
-    if ('' === this.iframeTarget.src) {
-      this.iframeTarget.src = this.iframeTarget.dataset.src;
-    }
   }
 
   updatePreview() {
@@ -66,9 +50,13 @@ export default class extends Controller {
     this.updatePreview();
   }
 
-  updateFromCrop(e) {
-    this.filePathValue = e.detail.path;
+  setPath(path) {
+    this.filePathValue = path;
     this.updatePreview();
+  }
+
+  updateFromCrop(e) {
+    this.setPath(e.detail.path);
   }
 
   upload(e) {
@@ -81,7 +69,7 @@ export default class extends Controller {
     }).then(({ json: { files } }) => {
       this.filePathValue = files[0].url;
       this.updatePreview();
-    }).catch(err => console.error(err));
+    }).catch(err => alert(err));
   }
 
   filePathValueChanged() {
@@ -90,7 +78,7 @@ export default class extends Controller {
 
   getModalController() {
     return this.application.getControllerForElementAndIdentifier(
-      this.modalTarget,
+      document.getElementById(this.modalIdValue),
       this.identifier.replace('media', 'modal'),
     );
   }

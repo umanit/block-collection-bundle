@@ -46,31 +46,10 @@ var _default = /*#__PURE__*/function (_Controller) {
   }
 
   _createClass(_default, [{
-    key: "connect",
-    value: function connect() {
-      var _this = this;
-
-      this.iframeTarget.addEventListener('load', function () {
-        _this.iframeTarget.contentWindow.document.body.querySelectorAll('.select').forEach(function (row) {
-          row.addEventListener('click', function () {
-            _this.filePathValue = row.dataset.path;
-
-            _this.closeModal();
-
-            _this.updatePreview();
-          });
-        });
-      });
-    }
-  }, {
-    key: "fileManager",
-    value: function fileManager(e) {
+    key: "callFileManager",
+    value: function callFileManager(e) {
       e.preventDefault();
       this.openModal();
-
-      if ('' === this.iframeTarget.src) {
-        this.iframeTarget.src = this.iframeTarget.dataset.src;
-      }
     }
   }, {
     key: "updatePreview",
@@ -109,15 +88,20 @@ var _default = /*#__PURE__*/function (_Controller) {
       this.updatePreview();
     }
   }, {
+    key: "setPath",
+    value: function setPath(path) {
+      this.filePathValue = path;
+      this.updatePreview();
+    }
+  }, {
     key: "updateFromCrop",
     value: function updateFromCrop(e) {
-      this.filePathValue = e.detail.path;
-      this.updatePreview();
+      this.setPath(e.detail.path);
     }
   }, {
     key: "upload",
     value: function upload(e) {
-      var _this2 = this;
+      var _this = this;
 
       var form = new FormData();
       form.append('files', e.currentTarget.files[0]);
@@ -126,11 +110,11 @@ var _default = /*#__PURE__*/function (_Controller) {
         body: form
       }).then(function (_ref2) {
         var files = _ref2.json.files;
-        _this2.filePathValue = files[0].url;
+        _this.filePathValue = files[0].url;
 
-        _this2.updatePreview();
+        _this.updatePreview();
       })["catch"](function (err) {
-        return console.error(err);
+        return alert(err);
       });
     }
   }, {
@@ -141,7 +125,7 @@ var _default = /*#__PURE__*/function (_Controller) {
   }, {
     key: "getModalController",
     value: function getModalController() {
-      return this.application.getControllerForElementAndIdentifier(this.modalTarget, this.identifier.replace('media', 'modal'));
+      return this.application.getControllerForElementAndIdentifier(document.getElementById(this.modalIdValue), this.identifier.replace('media', 'modal'));
     }
   }, {
     key: "openModal",
@@ -167,5 +151,6 @@ _defineProperty(_default, "values", {
   uploadUrl: String,
   basePath: String,
   cropableMarkup: String,
-  iconUrl: String
+  iconUrl: String,
+  modalId: String
 });

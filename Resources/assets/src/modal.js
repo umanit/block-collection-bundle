@@ -6,6 +6,10 @@ import './style.css';
 export default class extends Controller {
   static targets = ['overlay', 'modal'];
 
+  initialize() {
+    document.body.appendChild(this.element);
+  }
+
   toggle() {
     if (this.modalTarget.classList.contains('active')) {
       this.close();
@@ -32,7 +36,7 @@ export default class extends Controller {
 
     this.modalTarget.classList.remove('active');
     this.element.style.display = 'none';
-    this.overlayTarget.classList.remove('active');
     this.modalTarget.setAttribute('aria-hidden', 'true');
+    this.overlayTarget.classList.remove('active');
   }
 }

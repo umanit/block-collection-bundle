@@ -20,6 +20,11 @@
         "fetch": "lazy",
         "enabled": true
       },
+      "file-manager": {
+        "main": "dist/file-manager.js",
+        "fetch": "lazy",
+        "enabled": true
+      },
       "media": {
         "main": "dist/media.js",
         "fetch": "lazy",

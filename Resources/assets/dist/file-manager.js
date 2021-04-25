@@ -9,7 +9,7 @@ exports["default"] = void 0;
 
 var _stimulus = require("stimulus");
 
-require("./style.css");
+var _stimulusUse = require("stimulus-use");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -33,7 +33,6 @@ function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.g
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-/* stimulusFetch: 'lazy' */
 var _default = /*#__PURE__*/function (_Controller) {
   _inherits(_default, _Controller);
 
@@ -48,40 +47,37 @@ var _default = /*#__PURE__*/function (_Controller) {
   _createClass(_default, [{
     key: "initialize",
     value: function initialize() {
-      document.body.appendChild(this.element);
-    }
-  }, {
-    key: "toggle",
-    value: function toggle() {
-      if (this.modalTarget.classList.contains('active')) {
-        this.close();
-      } else {
-        this.open();
-      }
-    }
-  }, {
-    key: "open",
-    value: function open(e) {
-      if (e) {
-        e.preventDefault();
-      }
+      var _this = this;
 
-      this.modalTarget.classList.add('active');
-      this.element.style.display = '';
-      this.modalTarget.removeAttribute('aria-hidden');
-      this.overlayTarget.classList.add('active');
+      this.element.addEventListener('load', function () {
+        _this.element.contentWindow.document.body.querySelectorAll('.select').forEach(function (row) {
+          row.addEventListener('click', function () {
+            _this.getMediaController().setPath(row.dataset.path);
+
+            _this.dispatch('select-media', {
+              path: row.dataset.path
+            });
+          });
+        });
+      });
     }
   }, {
-    key: "close",
-    value: function close(e) {
-      if (e) {
-        e.preventDefault();
+    key: "connect",
+    value: function connect() {
+      (0, _stimulusUse.useDispatch)(this);
+      (0, _stimulusUse.useIntersection)(this);
+    }
+  }, {
+    key: "appear",
+    value: function appear() {
+      if ('' === this.element.src) {
+        this.element.src = this.srcValue;
       }
-
-      this.modalTarget.classList.remove('active');
-      this.element.style.display = 'none';
-      this.modalTarget.setAttribute('aria-hidden', 'true');
-      this.overlayTarget.classList.remove('active');
+    }
+  }, {
+    key: "getMediaController",
+    value: function getMediaController() {
+      return this.application.getControllerForElementAndIdentifier(document.getElementById(this.mediaControllerIdValue), this.identifier.replace('file-manager', 'media'));
     }
   }]);
 
@@ -90,4 +86,7 @@ var _default = /*#__PURE__*/function (_Controller) {
 
 exports["default"] = _default;
 
-_defineProperty(_default, "targets", ['overlay', 'modal']);
+_defineProperty(_default, "values", {
+  src: String,
+  mediaControllerId: String
+});
