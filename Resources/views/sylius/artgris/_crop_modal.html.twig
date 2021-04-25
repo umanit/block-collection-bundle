@@ -3,8 +3,9 @@
 <div {{ stimulus_controller('umanit/block-collection-bundle/modal') }}
     id="cropper-modal-{{ form.vars.id }}" style="display:none;"
     data-action="umanit--block-collection-bundle--crop:media-cropped->umanit--block-collection-bundle--modal#close">
-  <div class="c-modal-overlay" aria-hidden="true" data-umanit--block-collection-bundle--modal-target="overlay"></div>
-  <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
+  <div class="umanit-block-collection-bundle-modal-overlay" aria-hidden="true"
+       data-umanit--block-collection-bundle--modal-target="overlay"></div>
+  <div class="umanit-block-collection-bundle-modal" aria-hidden="true" role="dialog" tabindex="-1"
        data-umanit--block-collection-bundle--modal-target="modal"
       {{ stimulus_controller('umanit/block-collection-bundle/crop', {
         ratio: crop_options.ratio|default,
@@ -12,71 +13,81 @@
         conf: conf,
         mediaControllerId: 'artgris-media-' ~ id,
       }) }}>
-    <button class="c-modal__btn-close" data-action="click->umanit--block-collection-bundle--modal#close">
-      <span>{{ 'modal.close'|trans }}</span>
-    </button>
-    <div class="header">{{ 'crop.title'|trans }}</div>
-    <div class="scrolling content">
-      <div class="ui equal width grid">
-        <div class="row">
-          <div class="column">
-            {% if crop_options.allow_rotation %}
-              <div class="ui icon buttons">
-                <button type="button" class="ui button"
-                        data-action="click->umanit--block-collection-bundle--crop#rotateLeft">
-                  <i class="undo icon"></i>
-                </button>
-                <button type="button" class="ui button"
-                        data-action="click->umanit--block-collection-bundle--crop#rotateRight">
-                  <i class="redo icon"></i>
-                </button>
-              </div>
-            {% endif %}
+    <div class="umanit-block-collection-bundle-modal__header">
+      <button class="umanit-block-collection-bundle-modal__btn-close"
+              data-action="click->umanit--block-collection-bundle--modal#close">
+        <span>{{ 'modal.close'|trans }}</span>
+      </button>
+      <div class="header">{{ 'crop.title'|trans }}</div>
+    </div>
+    <div class="umanit-block-collection-bundle-modal__content">
+      <div class="scrolling content">
+        <div class="ui equal width grid">
+          <div class="row">
+            <div class="column">
+              {% if crop_options.allow_rotation %}
+                <div class="ui icon buttons">
+                  <button type="button" class="ui button"
+                          data-action="click->umanit--block-collection-bundle--crop#rotateLeft">
+                    <i class="undo icon"></i>
+                  </button>
+                  <button type="button" class="ui button"
+                          data-action="click->umanit--block-collection-bundle--crop#rotateRight">
+                    <i class="redo icon"></i>
+                  </button>
+                </div>
+              {% endif %}
 
-            {% if crop_options.allow_flip %}
-              <div class="ui icon buttons">
-                <button type="button" class="ui button"
-                        data-action="click->umanit--block-collection-bundle--crop#flipX">
-                  <i class="exchange icon"></i>
-                </button>
-                <button type="button" class="ui button"
-                        data-action="click->umanit--block-collection-bundle--crop#flipY">
-                  <i class="clockwise rotated exchange icon"></i>
-                </button>
+              {% if crop_options.allow_flip %}
+                <div class="ui icon buttons">
+                  <button type="button" class="ui button"
+                          data-action="click->umanit--block-collection-bundle--crop#flipX">
+                    <i class="exchange icon"></i>
+                  </button>
+                  <button type="button" class="ui button"
+                          data-action="click->umanit--block-collection-bundle--crop#flipY">
+                    <i class="clockwise rotated exchange icon"></i>
+                  </button>
+                </div>
+              {% endif %}
+            </div>
+            {% if crop_options.display_crop_data %}
+              <div class="right aligned column">
+                <div class="ui small labels">
+                  {% for el in ['x', 'y', 'width', 'height'] %}
+                    <div class="ui label">
+                      {{ ('crop.' ~ el)|trans }}
+                      <div class="detail" data-umanit--block-collection-bundle--crop-target="{{ el }}">0</div>
+                    </div>
+                  {% endfor %}
+                  {% if crop_options.ratio|default %}
+                    <div class="ui blue label">
+                      {{ 'crop.ratio'|trans({ '%value%': crop_options.ratio|round(2) }) }}
+                    </div>
+                  {% endif %}
+                </div>
               </div>
             {% endif %}
           </div>
-          {% if crop_options.display_crop_data %}
-            <div class="right aligned column">
-              <div class="ui small labels">
-                {% for el in ['x', 'y', 'width', 'height'] %}
-                  <div class="ui label">
-                    {{ ('crop.' ~ el)|trans }}
-                    <div class="detail" data-umanit--block-collection-bundle--crop-target="{{ el }}">0</div>
-                  </div>
-                {% endfor %}
-                {% if crop_options.ratio|default %}
-                  <div class="ui blue label">{{ 'crop.ratio'|trans({ '%value%': crop_options.ratio|round(2) }) }}</div>
-                {% endif %}
-              </div>
-            </div>
-          {% endif %}
+          <div class="row">
+            <div class="column modal-crop-container" style="max-height: 550px;"
+                 data-umanit--block-collection-bundle--crop-target="container"></div>
+          </div>
         </div>
-        <div class="row">
-          <div class="column modal-crop-container" style="max-height: 550px;"
-               data-umanit--block-collection-bundle--crop-target="container"></div>
+      </div>
+      <div class="umanit-block-collection-bundle-modal__footer">
+        <div class="umanit-block-collection-bundle-modal__btn-container">
+          <button type="button" class="umanit-block-collection-bundle-modal__btn" aria-label="{{ 'modal.close'|trans }}"
+                  data-action="click->umanit--block-collection-bundle--modal#close">
+            {{ 'modal.close'|trans }}
+          </button>
+          <button type="button" class="umanit-block-collection-bundle-modal__btn" aria-label="{{ 'modal.close'|trans }}"
+                  data-umanit--block-collection-bundle--crop-target="save"
+                  data-action="click->umanit--block-collection-bundle--crop#apply">
+            {{ 'crop.apply'|trans }}
+          </button>
         </div>
       </div>
     </div>
-
-    <button type="button" class="c-modal__btn" aria-label="{{ 'modal.close'|trans }}"
-            data-action="click->umanit--block-collection-bundle--modal#close">
-      {{ 'modal.close'|trans }}
-    </button>
-    <button type="button" class="c-modal__btn" aria-label="{{ 'modal.close'|trans }}"
-            data-umanit--block-collection-bundle--crop-target="save"
-            data-action="click->umanit--block-collection-bundle--crop#apply">
-      {{ 'crop.apply'|trans }}
-    </button>
   </div>
 </div>

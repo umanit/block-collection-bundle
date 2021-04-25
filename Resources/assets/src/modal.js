@@ -1,13 +1,26 @@
 import { Controller } from 'stimulus';
+import { useDebounce, useWindowResize } from 'stimulus-use';
 
-import './style.css';
+import './modal-style.css';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
+  static debounces = ['windowResize'];
   static targets = ['overlay', 'modal'];
 
   initialize() {
     document.body.appendChild(this.element);
+  }
+
+  connect() {
+    useDebounce(this, { wait: 200 });
+    useWindowResize(this);
+
+    this.escCloseEvent = this.escCloseEvent.bind(this);
+  }
+
+  disconnect() {
+    document.addEventListener('keyup', this.escCloseEvent);
   }
 
   toggle() {
@@ -38,5 +51,15 @@ export default class extends Controller {
     this.element.style.display = 'none';
     this.modalTarget.setAttribute('aria-hidden', 'true');
     this.overlayTarget.classList.remove('active');
+  }
+
+  windowResize() {
+    this.close();
+  }
+
+  escCloseEvent(e) {
+    if ('Escape' === e.key) {
+      this.close();
+    }
   }
 }

@@ -9,7 +9,9 @@ exports["default"] = void 0;
 
 var _stimulus = require("stimulus");
 
-require("./style.css");
+var _stimulusUse = require("stimulus-use");
+
+require("./modal-style.css");
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -51,6 +53,20 @@ var _default = /*#__PURE__*/function (_Controller) {
       document.body.appendChild(this.element);
     }
   }, {
+    key: "connect",
+    value: function connect() {
+      (0, _stimulusUse.useDebounce)(this, {
+        wait: 200
+      });
+      (0, _stimulusUse.useWindowResize)(this);
+      this.escCloseEvent = this.escCloseEvent.bind(this);
+    }
+  }, {
+    key: "disconnect",
+    value: function disconnect() {
+      document.addEventListener('keyup', this.escCloseEvent);
+    }
+  }, {
     key: "toggle",
     value: function toggle() {
       if (this.modalTarget.classList.contains('active')) {
@@ -83,11 +99,25 @@ var _default = /*#__PURE__*/function (_Controller) {
       this.modalTarget.setAttribute('aria-hidden', 'true');
       this.overlayTarget.classList.remove('active');
     }
+  }, {
+    key: "windowResize",
+    value: function windowResize() {
+      this.close();
+    }
+  }, {
+    key: "escCloseEvent",
+    value: function escCloseEvent(e) {
+      if ('Escape' === e.key) {
+        this.close();
+      }
+    }
   }]);
 
   return _default;
 }(_stimulus.Controller);
 
 exports["default"] = _default;
+
+_defineProperty(_default, "debounces", ['windowResize']);
 
 _defineProperty(_default, "targets", ['overlay', 'modal']);
