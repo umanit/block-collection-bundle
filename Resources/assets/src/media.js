@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 import { ajax } from '@umanit/tools';
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static targets = ['modal', 'iframe', 'input', 'preview'];
   static values = {

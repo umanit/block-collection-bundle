@@ -1,7 +1,6 @@
 import { Controller } from 'stimulus';
 import { useDebounce, useWindowResize } from 'stimulus-use';
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static debounces = ['windowResize'];
   static targets = ['overlay', 'modal'];

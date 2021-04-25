@@ -3,7 +3,6 @@ import { useDispatch, useIntersection } from 'stimulus-use';
 import Cropper from 'cropperjs';
 import { ajax } from '@umanit/tools';
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static targets = ['container', 'x', 'y', 'width', 'height', 'save'];
   static values = {

@@ -1,6 +1,5 @@
 import { Controller } from 'stimulus';
 
-/* stimulusFetch: 'lazy' */
 export default class extends Controller {
   static targets = ['list', 'addBtn'];
   static values = {
