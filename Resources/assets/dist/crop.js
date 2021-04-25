@@ -57,13 +57,12 @@ var _default = /*#__PURE__*/function (_Controller) {
     key: "connect",
     value: function connect() {
       (0, _stimulusUse.useDispatch)(this);
+      (0, _stimulusUse.useIntersection)(this);
     }
   }, {
-    key: "do",
-    value: function _do(e) {
-      e.preventDefault();
-      this.openModal();
-      var src = this.previewTarget.querySelector('img').src;
+    key: "appear",
+    value: function appear() {
+      var src = this.getMediaController().getPreviewSrc();
       var x = this.xTarget;
       var y = this.yTarget;
       var width = this.widthTarget;
@@ -90,6 +89,13 @@ var _default = /*#__PURE__*/function (_Controller) {
           }
         }
       });
+    }
+  }, {
+    key: "disappear",
+    value: function disappear() {
+      if (this.cropper) {
+        this.cropper.destroy();
+      }
     }
   }, {
     key: "rotateRight",
@@ -151,7 +157,7 @@ var _default = /*#__PURE__*/function (_Controller) {
         method: 'post',
         json: {
           conf: this.confValue,
-          src: this.previewTarget.querySelector('img').getAttribute('src'),
+          src: this.getMediaController().getPreviewSrc(),
           x: Math.round(data.x),
           y: Math.round(data.y),
           width: Math.round(data.width),
@@ -164,31 +170,19 @@ var _default = /*#__PURE__*/function (_Controller) {
       }).then(function (_ref) {
         var path = _ref.json;
 
-        _this.dispatch('crop', {
-          path: path
-        });
+        _this.getMediaController().setPath(path);
 
-        _this.closeModal();
+        _this.dispatch('media-cropped');
       })["catch"](function (err) {
-        return console.error(err);
+        return alert(err);
       })["finally"](function () {
         return _this.cropper.destroy();
       });
     }
   }, {
-    key: "getModalController",
-    value: function getModalController() {
-      return this.application.getControllerForElementAndIdentifier(this.modalTarget, this.identifier.replace('crop', 'modal'));
-    }
-  }, {
-    key: "openModal",
-    value: function openModal() {
-      this.getModalController().open();
-    }
-  }, {
-    key: "closeModal",
-    value: function closeModal() {
-      this.getModalController().close();
+    key: "getMediaController",
+    value: function getMediaController() {
+      return this.application.getControllerForElementAndIdentifier(document.getElementById(this.mediaControllerIdValue), this.identifier.replace('crop', 'media'));
     }
   }]);
 
@@ -197,10 +191,11 @@ var _default = /*#__PURE__*/function (_Controller) {
 
 exports["default"] = _default;
 
-_defineProperty(_default, "targets", ['preview', 'modal', 'container', 'x', 'y', 'width', 'height', 'save']);
+_defineProperty(_default, "targets", ['container', 'x', 'y', 'width', 'height', 'save']);
 
 _defineProperty(_default, "values", {
   ratio: Number,
   url: String,
-  conf: String
+  conf: String,
+  mediaControllerId: String
 });

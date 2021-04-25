@@ -49,7 +49,13 @@ var _default = /*#__PURE__*/function (_Controller) {
     key: "callFileManager",
     value: function callFileManager(e) {
       e.preventDefault();
-      this.openModal();
+      this.openModal(this.fileManagerModalIdValue);
+    }
+  }, {
+    key: "callCropper",
+    value: function callCropper(e) {
+      e.preventDefault();
+      this.openModal(this.cropperModalIdValue);
     }
   }, {
     key: "updatePreview",
@@ -94,9 +100,9 @@ var _default = /*#__PURE__*/function (_Controller) {
       this.updatePreview();
     }
   }, {
-    key: "updateFromCrop",
-    value: function updateFromCrop(e) {
-      this.setPath(e.detail.path);
+    key: "getPreviewSrc",
+    value: function getPreviewSrc() {
+      return this.previewTarget.querySelector('img').getAttribute('src');
     }
   }, {
     key: "upload",
@@ -124,18 +130,13 @@ var _default = /*#__PURE__*/function (_Controller) {
     }
   }, {
     key: "getModalController",
-    value: function getModalController() {
-      return this.application.getControllerForElementAndIdentifier(document.getElementById(this.modalIdValue), this.identifier.replace('media', 'modal'));
+    value: function getModalController(modalId) {
+      return this.application.getControllerForElementAndIdentifier(document.getElementById(modalId), this.identifier.replace('media', 'modal'));
     }
   }, {
     key: "openModal",
-    value: function openModal() {
-      this.getModalController().open();
-    }
-  }, {
-    key: "closeModal",
-    value: function closeModal() {
-      this.getModalController().close();
+    value: function openModal(modalId) {
+      this.getModalController(modalId).open();
     }
   }]);
 
@@ -152,5 +153,6 @@ _defineProperty(_default, "values", {
   basePath: String,
   cropableMarkup: String,
   iconUrl: String,
-  modalId: String
+  fileManagerModalId: String,
+  cropperModalId: String
 });

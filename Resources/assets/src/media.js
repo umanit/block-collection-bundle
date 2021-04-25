@@ -10,13 +10,20 @@ export default class extends Controller {
     basePath: String,
     cropableMarkup: String,
     iconUrl: String,
-    modalId: String,
+    fileManagerModalId: String,
+    cropperModalId: String,
   };
 
   callFileManager(e) {
     e.preventDefault();
 
-    this.openModal();
+    this.openModal(this.fileManagerModalIdValue);
+  }
+
+  callCropper(e) {
+    e.preventDefault();
+
+    this.openModal(this.cropperModalIdValue);
   }
 
   updatePreview() {
@@ -55,8 +62,8 @@ export default class extends Controller {
     this.updatePreview();
   }
 
-  updateFromCrop(e) {
-    this.setPath(e.detail.path);
+  getPreviewSrc() {
+    return this.previewTarget.querySelector('img').getAttribute('src');
   }
 
   upload(e) {
@@ -76,18 +83,14 @@ export default class extends Controller {
     this.inputTarget.value = this.filePathValue;
   }
 
-  getModalController() {
+  getModalController(modalId) {
     return this.application.getControllerForElementAndIdentifier(
-      document.getElementById(this.modalIdValue),
+      document.getElementById(modalId),
       this.identifier.replace('media', 'modal'),
     );
   }
 
-  openModal() {
-    this.getModalController().open();
-  }
-
-  closeModal() {
-    this.getModalController().close();
+  openModal(modalId) {
+    this.getModalController(modalId).open();
   }
 }

@@ -2,7 +2,7 @@
 
 <div {{ stimulus_controller('umanit/block-collection-bundle/modal') }}
     id="manager-modal-{{ form.vars.id }}" style="display:none;"
-    data-action="umanit--block-collection-bundle--file-manager:select-media->umanit--block-collection-bundle--modal#close">
+    data-action="umanit--block-collection-bundle--file-manager:media-selected->umanit--block-collection-bundle--modal#close">
   <div class="c-modal-overlay" aria-hidden="true" data-umanit--block-collection-bundle--modal-target="overlay"></div>
   <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
        data-umanit--block-collection-bundle--modal-target="modal">

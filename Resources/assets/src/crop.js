@@ -1,5 +1,5 @@
 import { Controller } from 'stimulus';
-import { useDispatch } from 'stimulus-use';
+import { useDispatch, useIntersection } from 'stimulus-use';
 import Cropper from 'cropperjs';
 import { ajax } from '@umanit/tools';
 
@@ -7,23 +7,21 @@ import 'cropperjs/dist/cropper.min.css';
 
 /* stimulusFetch: 'lazy' */
 export default class extends Controller {
-  static targets = ['preview', 'modal', 'container', 'x', 'y', 'width', 'height', 'save'];
+  static targets = ['container', 'x', 'y', 'width', 'height', 'save'];
   static values = {
     ratio: Number,
     url: String,
     conf: String,
+    mediaControllerId: String,
   };
 
   connect() {
     useDispatch(this);
+    useIntersection(this);
   }
 
-  do(e) {
-    e.preventDefault();
-
-    this.openModal();
-
-    const src = this.previewTarget.querySelector('img').src;
+  appear() {
+    const src = this.getMediaController().getPreviewSrc();
     const x = this.xTarget;
     const y = this.yTarget;
     const width = this.widthTarget;
@@ -52,6 +50,12 @@ export default class extends Controller {
         }
       },
     });
+  }
+
+  disappear() {
+    if (this.cropper) {
+      this.cropper.destroy();
+    }
   }
 
   rotateRight(e) {
@@ -107,7 +111,7 @@ export default class extends Controller {
       method: 'post',
       json: {
         conf: this.confValue,
-        src: this.previewTarget.querySelector('img').getAttribute('src'),
+        src: this.getMediaController().getPreviewSrc(),
         x: Math.round(data.x),
         y: Math.round(data.y),
         width: Math.round(data.width),
@@ -118,26 +122,18 @@ export default class extends Controller {
         checkCrossOrigin: false,
       },
     }).then(({ json: path }) => {
-        this.dispatch('crop', { path });
+        this.getMediaController().setPath(path);
 
-        this.closeModal();
+        this.dispatch('media-cropped');
       })
-      .catch(err => console.error(err))
+      .catch(err => alert(err))
       .finally(() => this.cropper.destroy());
   }
 
-  getModalController() {
+  getMediaController() {
     return this.application.getControllerForElementAndIdentifier(
-      this.modalTarget,
-      this.identifier.replace('crop', 'modal'),
+      document.getElementById(this.mediaControllerIdValue),
+      this.identifier.replace('crop', 'media'),
     );
-  }
-
-  openModal() {
-    this.getModalController().open();
-  }
-
-  closeModal() {
-    this.getModalController().close();
   }
 }

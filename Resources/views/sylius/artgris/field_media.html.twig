@@ -93,21 +93,14 @@
   {% apply spaceless %}
     {% set base_path = form.vars.allow_crop ? get_web_path(conf) : 1 %}
     <div id="artgris-media-{{ id }}" class="artgris-media{% if form.vars.errors|length > 0 %} error{% endif %}"
-        {{ stimulus_controller({
-          'umanit/block-collection-bundle/media': {
-            filePath: form.vars.value,
-            uploadUrl: path('file_manager_upload', { conf: conf }),
-            basePath: base_path,
-            iconUrl: path('admin_ajax_icon'),
-            modalId: 'manager-modal-' ~ id,
-          },
-          'umanit/block-collection-bundle/crop': {
-            ratio: crop_options.ratio|default,
-            url: path('admin_ajax_crop'),
-            conf: conf,
-          },
+        {{ stimulus_controller('umanit/block-collection-bundle/media', {
+          filePath: form.vars.value,
+          uploadUrl: path('file_manager_upload', { conf: conf }),
+          basePath: base_path,
+          iconUrl: path('admin_ajax_icon'),
+          fileManagerModalId: 'manager-modal-' ~ id,
+          cropperModalId: 'cropper-modal-' ~ id,
         }) }}
-         data-action="umanit--block-collection-bundle--crop:crop->umanit--block-collection-bundle--media#updateFromCrop"
          data-umanit--block-collection-bundle--collection-target="item">
       <div class="ui grid middle aligned">
         <div class="column row">
@@ -122,8 +115,8 @@
           {% block file_preview %}
             {% set cropable_markup %}
               {% apply spaceless %}
-                <a data-action="click->umanit--block-collection-bundle--crop#do" href="#"
-                   class="ui small image crop-hover">
+                <a href="#" class="ui small image crop-hover"
+                        data-action="click->umanit--block-collection-bundle--media#callCropper">
                   <span class="ui left corner label">
                     <i class="crop icon"></i>
                   </span>

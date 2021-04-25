@@ -13,7 +13,7 @@ export default class extends Controller {
         row.addEventListener('click', () => {
           this.getMediaController().setPath(row.dataset.path);
 
-          this.dispatch('select-media', { path: row.dataset.path });
+          this.dispatch('media-selected');
         });
       });
     });

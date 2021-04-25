@@ -54,9 +54,7 @@ var _default = /*#__PURE__*/function (_Controller) {
           row.addEventListener('click', function () {
             _this.getMediaController().setPath(row.dataset.path);
 
-            _this.dispatch('select-media', {
-              path: row.dataset.path
-            });
+            _this.dispatch('media-selected');
           });
         });
       });

@@ -1,10 +1,17 @@
 {% trans_default_domain 'UmanitBlockCollectionBundle' %}
 
 <div {{ stimulus_controller('umanit/block-collection-bundle/modal') }}
-    id="crop-modal-{{ form.vars.id }}" style="display:none;">
+    id="cropper-modal-{{ form.vars.id }}" style="display:none;"
+    data-action="umanit--block-collection-bundle--crop:media-cropped->umanit--block-collection-bundle--modal#close">
   <div class="c-modal-overlay" aria-hidden="true" data-umanit--block-collection-bundle--modal-target="overlay"></div>
   <div class="c-modal" aria-hidden="true" role="dialog" tabindex="-1"
-       data-umanit--block-collection-bundle--modal-target="modal">
+       data-umanit--block-collection-bundle--modal-target="modal"
+      {{ stimulus_controller('umanit/block-collection-bundle/crop', {
+        ratio: crop_options.ratio|default,
+        url: path('admin_ajax_crop'),
+        conf: conf,
+        mediaControllerId: 'artgris-media-' ~ id,
+      }) }}>
     <button class="c-modal__btn-close" data-action="click->umanit--block-collection-bundle--modal#close">
       <span>{{ 'modal.close'|trans }}</span>
     </button>
