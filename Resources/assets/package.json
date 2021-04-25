@@ -18,7 +18,10 @@
       "crop": {
         "main": "dist/crop.js",
         "fetch": "lazy",
-        "enabled": true
+        "enabled": true,
+        "autoimport": {
+          "cropperjs/dist/cropper.min.css": true
+        }
       },
       "file-manager": {
         "main": "dist/file-manager.js",
@@ -33,12 +36,15 @@
       "modal": {
         "main": "dist/modal.js",
         "fetch": "lazy",
-        "enabled": true
+        "enabled": true,
+        "autoimport": {
+          "@umanit/block-collection-bundle/src/modal-style.css": true
+        }
       }
     }
   },
   "scripts": {
-    "build": "babel src -d dist --copy-files"
+    "build": "babel src -d dist"
   },
   "peerDependencies": {
     "@umanit/block-bundle": "0.0.1",

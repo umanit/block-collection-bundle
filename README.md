@@ -73,7 +73,10 @@ projet.
       },
       "crop": {
         "enabled": true,
-        "fetch": "eager"
+        "fetch": "eager",
+        "autoimport": {
+          "cropperjs/dist/cropper.min.css": true
+        }
       },
       "file-manager": {
         "enabled": true,
@@ -85,7 +88,10 @@ projet.
       },
       "modal": {
         "enabled": true,
-        "fetch": "eager"
+        "fetch": "eager",
+        "autoimport": {
+          "@umanit/block-collection-bundle/src/modal-style.css": true
+        }
       }
     }
   }
