@@ -4,10 +4,11 @@ A collection of blocks ready to use with [umanit/block-bundle](https://github.co
 
 ## Prerequisites
 
-1. Install and configure [FOSCKEditorBundle](https://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html)
+1. Install and
+   configure [FOSCKEditorBundle](https://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html)
 1. Install and configure [ArtgrisMediaBundle](https://github.com/artgris/MediaBundle)
-    * The assets' installation is not necessary because they're all rewrite in this bundle, you only need to declare
-    the bundle and his routing.
+    * The assets' installation is not necessary because they're all rewrite in this bundle, you only need to declare the
+      bundle and his routing.
 1. Install and configure [UmanitBlockBundle](https://github.com/umanit/block-bundle)
 
 ## Front requirements
@@ -41,7 +42,8 @@ twig:
         - '@UmanitBlockCollection/sylius/artgris/field_media.html.twig'
 ```
 
-Add `@umanit/block-collection-bundle` dev-dependency in your `package.json`
+Add `@umanit/block-collection-bundle` dev-dependency in your `package.json`. This part is automatically done if you use
+Flex in your projet.
 
 ```json
 {
@@ -53,7 +55,8 @@ Add `@umanit/block-collection-bundle` dev-dependency in your `package.json`
 }
 ```
 
-Add stimulus controllers to your `assets/controllers.json`
+Add stimulus controllers to your `assets/controllers.json`. This part is automatically done if you use Flex in your
+projet.
 
 ```json
 {
@@ -62,23 +65,27 @@ Add stimulus controllers to your `assets/controllers.json`
     "@umanit/block-collection-bundle": {
       "collection": {
         "enabled": true,
-        "fetch": "lazy"
+        "fetch": "eager"
       },
       "ckeditor": {
         "enabled": true,
-        "fetch": "lazy"
+        "fetch": "eager"
       },
       "crop": {
         "enabled": true,
-        "fetch": "lazy"
+        "fetch": "eager"
+      },
+      "file-manager": {
+        "enabled": true,
+        "fetch": "eager"
       },
       "media": {
         "enabled": true,
-        "fetch": "lazy"
+        "fetch": "eager"
       },
       "modal": {
         "enabled": true,
-        "fetch": "lazy"
+        "fetch": "eager"
       }
     }
   }
@@ -127,8 +134,7 @@ A block composed of a title, a wysiwyg text, and an image with an `alt` field.
 The text form type uses the `CKEditorType` from
 [FOSCKEditorBundle](https://symfony.com/doc/current/bundles/FOSCKEditorBundle/installation.html).
 
-The image form type uses the `MediaType` from
-[ArtgrisMediaBundle](https://github.com/artgris/MediaBundle).
+The image form type uses the `MediaType` from [ArtgrisMediaBundle](https://github.com/artgris/MediaBundle).
 
 ### Video
 
