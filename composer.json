@@ -19,7 +19,7 @@
   "prefer-stable": true,
   "minimum-stability": "dev",
   "require": {
-    "php": "^7.3",
+    "php": "^7.3|^8.0",
     "umanit/block-bundle": "^3.0",
     "symfony/twig-bundle": "^4.4|^5.2",
     "doctrine/doctrine-bundle": "^1.12|^2.1",

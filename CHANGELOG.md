@@ -5,6 +5,9 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+### Added
+- Add PHP 8.0 support
+
 ### Changed
 - Use [Symfony UX](https://symfony.com/ux) with stimulus to handle JS scripts
 - Use a custom domain for translations
