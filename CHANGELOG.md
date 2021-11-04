@@ -6,6 +6,10 @@ to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
 
+## [1.0.3] - 2021-11-04
+### Added
+- Add PHP 8.0 support
+
 ## [1.0.2] - 2021-03-24
 ### Modified
 - Add Symfony 5.2 compatiblity
